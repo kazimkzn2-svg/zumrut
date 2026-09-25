@@ -3908,8 +3908,7 @@ body.story-stage-4 {
            Bütün her şey aslında yüzünde bir tebessüm oluşturmak için. 
         </p>
 
-       <button onclick="next(11)">Devam etmek istiyor musun? →</button>
-
+       <button onclick="next(10)">Devam etmek istiyor musun? →</button>
     </div>
 </section>
 
@@ -4036,15 +4035,6 @@ body.story-stage-4 {
             </span>
         </div>
 
-
-        <button
-            class="candle-continue"
-            id="candleContinue"
-            onclick="next(10)"
-        >
-            ŞİMDİ BİR DİLEK TUT →
-        </button>
-
     </div>
 
 </section>
@@ -4090,7 +4080,7 @@ body.story-stage-4 {
         <button
             id="wishContinue"
             class="wish-continue"
-            onclick="next(9)"
+            onclick="next(11)"
         >
             DİLEĞİMİ TUTTUM →
         </button>
@@ -6438,6 +6428,427 @@ function showVisitReport() {
     }, 800);
 }
 
+
+/* =========================================
+   MUM ÜFLEME - MİKROFON SİSTEMİ
+========================================= */
+
+let candleAudioContext = null;
+let candleAnalyser = null;
+let candleMicrophone = null;
+let candleStream = null;
+
+let candlesFinished = false;
+let strongBlowStartedAt = null;
+
+
+async function startBlowDetection() {
+
+    if (candlesFinished) return;
+
+    const button =
+        document.getElementById("candleMicButton");
+
+    const help =
+        document.getElementById("candleHelp");
+
+    try {
+
+        /* Mikrofon izni */
+        candleStream =
+            await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    echoCancellation: false,
+                    noiseSuppression: false,
+                    autoGainControl: false
+                }
+            });
+
+
+        candleAudioContext =
+            new (window.AudioContext ||
+                 window.webkitAudioContext)();
+
+
+        candleAnalyser =
+            candleAudioContext.createAnalyser();
+
+        candleAnalyser.fftSize = 512;
+        candleAnalyser.smoothingTimeConstant = 0.25;
+
+
+        candleMicrophone =
+            candleAudioContext.createMediaStreamSource(
+                candleStream
+            );
+
+        candleMicrophone.connect(
+            candleAnalyser
+        );
+
+
+        if (button) {
+
+            button.textContent =
+                "🎙 ŞİMDİ ÜFLE";
+
+            button.classList.add("active");
+        }
+
+
+        if (help) {
+
+            help.innerHTML =
+                "Mikrofona doğru üfle.<br>" +
+                "<span>Alevlerin hareketine dikkat et. :)</span>";
+        }
+
+
+        detectBlow();
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Mikrofon açılamadı:",
+            error
+        );
+
+
+        if (button) {
+
+            button.textContent =
+                "MİKROFON AÇILAMADI";
+        }
+
+
+        if (help) {
+
+            help.innerHTML =
+                "Mikrofon izni alınamadı.<br>" +
+                "<span>Sorun değil, mumlara dokunarak söndürebilirsin. :)</span>";
+        }
+    }
+}
+
+
+
+/* =========================================
+   ÜFLEMEYİ ALGILA
+========================================= */
+
+function detectBlow() {
+
+    if (
+        !candleAnalyser ||
+        candlesFinished
+    ) {
+        return;
+    }
+
+
+    const data =
+        new Uint8Array(
+            candleAnalyser.frequencyBinCount
+        );
+
+
+    function analyse() {
+
+        if (candlesFinished) {
+            return;
+        }
+
+
+        candleAnalyser.getByteFrequencyData(
+            data
+        );
+
+
+        /*
+           Üfleme özellikle alt/orta frekanslarda
+           geniş bir gürültü oluşturur.
+        */
+
+        let total = 0;
+
+        const limit =
+            Math.min(80, data.length);
+
+
+        for (let i = 2; i < limit; i++) {
+            total += data[i];
+        }
+
+
+        const average =
+            total / (limit - 2);
+
+
+        /* Gösterge */
+
+        const meter =
+            document.getElementById(
+                "blowMeterFill"
+            );
+
+
+        const meterPercent =
+            Math.min(
+                100,
+                Math.max(
+                    0,
+                    (average - 12) * 2.2
+                )
+            );
+
+
+        if (meter) {
+
+            meter.style.width =
+                meterPercent + "%";
+        }
+
+
+        const flame2 =
+            document.getElementById("flame2");
+
+        const flame5 =
+            document.getElementById("flame5");
+
+
+        /*
+           35 üstü güçlü hava/ses kabul ediliyor.
+           Tek anlık ses yetmiyor:
+           yaklaşık 450ms devam etmesi gerekiyor.
+        */
+
+        if (average > 35) {
+
+            if (flame2) {
+                flame2.classList.add("blowing");
+            }
+
+            if (flame5) {
+                flame5.classList.add("blowing");
+            }
+
+
+            if (!strongBlowStartedAt) {
+
+                strongBlowStartedAt =
+                    performance.now();
+            }
+
+
+            const blowDuration =
+                performance.now() -
+                strongBlowStartedAt;
+
+
+            if (blowDuration > 450) {
+
+                extinguishCandles();
+
+                return;
+            }
+
+        }
+
+        else {
+
+            strongBlowStartedAt = null;
+
+
+            if (flame2) {
+                flame2.classList.remove("blowing");
+            }
+
+            if (flame5) {
+                flame5.classList.remove("blowing");
+            }
+        }
+
+
+        requestAnimationFrame(analyse);
+    }
+
+
+    analyse();
+}
+
+
+
+/* =========================================
+   MUMLARI SÖNDÜR
+========================================= */
+
+function extinguishCandles() {
+
+    if (candlesFinished) {
+        return;
+    }
+
+    candlesFinished = true;
+
+
+    const flame2 =
+        document.getElementById("flame2");
+
+    const flame5 =
+        document.getElementById("flame5");
+
+    const smoke2 =
+        document.getElementById("smoke2");
+
+    const smoke5 =
+        document.getElementById("smoke5");
+
+    const result =
+        document.getElementById("candleResult");
+
+    const button =
+        document.getElementById("candleMicButton");
+
+    const help =
+        document.getElementById("candleHelp");
+
+    const meter =
+        document.getElementById("blowMeterFill");
+
+
+    /* Alevleri söndür */
+
+    if (flame2) {
+
+        flame2.classList.remove("blowing");
+        flame2.classList.add("out");
+    }
+
+
+    if (flame5) {
+
+        flame5.classList.remove("blowing");
+        flame5.classList.add("out");
+    }
+
+
+    /* Duman */
+
+    setTimeout(() => {
+
+        if (smoke2) {
+            smoke2.classList.add("show");
+        }
+
+        if (smoke5) {
+            smoke5.classList.add("show");
+        }
+
+    }, 250);
+
+
+    /* Mikrofon göstergesini kapat */
+
+    if (meter) {
+        meter.style.width = "0%";
+    }
+
+
+    if (button) {
+
+        button.style.opacity = "0";
+        button.style.pointerEvents = "none";
+    }
+
+
+    if (help) {
+
+        help.style.opacity = "0";
+    }
+
+
+    /* Mikrofonu gerçekten kapat */
+
+    if (candleStream) {
+
+        candleStream
+            .getTracks()
+            .forEach(track => track.stop());
+    }
+
+
+    if (
+        candleAudioContext &&
+        candleAudioContext.state !== "closed"
+    ) {
+
+        candleAudioContext.close();
+    }
+
+
+    /*
+       Gizli keşif olarak kaydet
+       Set olduğu için ikinci kez sayılmaz.
+    */
+
+    if (
+        typeof visitStats !== "undefined"
+    ) {
+
+        visitStats.secretsFound.add(
+            "candles"
+        );
+    }
+
+
+    /* 25 yaş mesajı */
+
+    setTimeout(() => {
+
+        if (result) {
+            result.classList.add("show");
+        }
+
+    }, 650);
+
+
+    /*
+       Mesajı biraz görsün,
+       sonra otomatik dilek ekranına geç.
+    */
+
+    setTimeout(() => {
+
+        next(9);
+
+    }, 3200);
+}
+
+
+
+/* =========================================
+   MİKROFON ÇALIŞMAZSA:
+   MUMLARA DOKUNARAK SÖNDÜR
+========================================= */
+
+document
+    .querySelectorAll(".number-candle")
+    .forEach(candle => {
+
+        candle.addEventListener(
+            "click",
+            function() {
+
+                if (candlesFinished) {
+                    return;
+                }
+
+                extinguishCandles();
+            }
+        );
+    });
 </script>
 
 <div id="stellaHint">
