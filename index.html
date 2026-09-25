@@ -3504,6 +3504,716 @@ body.story-stage-4 {
     }
 }
 
+/* =========================================
+   SCREEN 12 - ZÜMRÜT BIRTHDAY EDITION
+========================================= */
+
+#screen12 {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            #ffd9ea 0%,
+            #f3a9c9 48%,
+            #df86ad 100%
+        );
+
+    padding-top: 55px;
+    padding-bottom: 70px;
+}
+
+.doll-container {
+    width: min(900px, 94vw);
+    margin: auto;
+}
+
+.doll-intro {
+    margin-bottom: 28px !important;
+}
+
+
+/* =========================================
+   OYUNCAK KUTUSU
+========================================= */
+
+.doll-package {
+    position: relative;
+
+    width: min(570px, 92vw);
+    margin: 25px auto 35px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff82b9,
+            #e64f91
+        );
+
+    border:
+        3px solid rgba(255,255,255,.85);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 28px 70px rgba(113,32,70,.27),
+        inset 0 0 30px rgba(255,255,255,.22);
+
+    transition:
+        transform .8s cubic-bezier(.16,.84,.32,1),
+        box-shadow .8s ease;
+}
+
+
+/* Parlama efekti */
+
+.doll-package::before {
+    content: "";
+
+    position: absolute;
+    inset: 7px;
+
+    border:
+        1px solid rgba(255,255,255,.40);
+
+    border-radius: 23px;
+
+    pointer-events: none;
+}
+
+
+/* ÜST ETİKET */
+
+.doll-package-top {
+    position: relative;
+
+    padding: 14px 15px 18px;
+
+    text-align: center;
+
+    color: white;
+}
+
+.doll-package-top > span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    opacity: .75;
+}
+
+.doll-package-top strong {
+    display: block;
+
+    font-size:
+        clamp(32px, 7vw, 52px);
+
+    line-height: 1;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 3px 15px rgba(115,26,68,.25);
+}
+
+.doll-package-top small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    opacity: .8;
+}
+
+
+/* =========================================
+   KUTUNUN ŞEFFAF İÇİ
+========================================= */
+
+.doll-package-content {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        1.45fr .75fr;
+
+    gap: 15px;
+
+    min-height: 310px;
+
+    padding: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.83),
+            rgba(255,226,239,.67)
+        );
+
+    border:
+        2px solid rgba(255,255,255,.85);
+
+    border-radius: 22px;
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,.75);
+}
+
+
+/* Hafif plastik parlama */
+
+.doll-package-content::after {
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+    top: 0;
+
+    width: 22%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            105deg,
+            transparent,
+            rgba(255,255,255,.25),
+            transparent
+        );
+
+    transform: skewX(-12deg);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   ZÜMRÜT BEBEK ALANI
+========================================= */
+
+.doll-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 275px;
+
+    border:
+        1px solid rgba(195,83,130,.17);
+
+    border-radius: 18px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.65),
+            rgba(255,199,222,.35)
+        );
+}
+
+.doll-preview-placeholder {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 180px;
+    height: 240px;
+
+    color: #b74e7d;
+
+    font-size: 62px;
+
+    border:
+        1px dashed rgba(183,78,125,.30);
+
+    border-radius:
+        90px 90px 30px 30px;
+
+    background:
+        rgba(255,255,255,.25);
+}
+
+.doll-preview-placeholder span {
+    margin-top: 10px;
+
+    font-size: 17px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.doll-preview-placeholder small {
+    margin-top: 5px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    opacity: .55;
+}
+
+
+/* =========================================
+   AKSESUAR YUVALARI
+========================================= */
+
+.doll-accessory-slots {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 9px;
+
+    align-content: center;
+}
+
+.doll-slot {
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    background:
+        rgba(255,255,255,.45);
+
+    border:
+        1px dashed rgba(168,65,110,.25);
+
+    border-radius: 16px;
+
+    color: rgba(130,49,84,.38);
+
+    transition:
+        transform .45s ease,
+        background .45s ease,
+        color .45s ease,
+        box-shadow .45s ease;
+}
+
+.doll-slot > span {
+    font-size: 28px;
+}
+
+.doll-slot small {
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+
+/* Seçim yapıldığında JS bu class'ı verecek */
+
+.doll-slot.filled {
+    color: #853b5d;
+
+    background:
+        rgba(255,255,255,.80);
+
+    border-style: solid;
+
+    box-shadow:
+        0 8px 20px rgba(137,48,88,.10);
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================
+   SEÇİM ALANI
+========================================= */
+
+.doll-builder {
+    width: min(650px, 94vw);
+
+    margin: 0 auto;
+}
+
+.doll-choice-group {
+    display: none;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+}
+
+.doll-choice-group.active {
+    display: block;
+
+    animation:
+        dollChoiceAppear .6s ease forwards;
+}
+
+@keyframes dollChoiceAppear {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.doll-step-number {
+    margin-bottom: 7px;
+
+    color:
+        rgba(107,45,73,.48);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.doll-choice-group h3 {
+    margin-bottom: 16px;
+
+    color: #71324f;
+
+    font-size: 18px;
+}
+
+
+/* SEÇENEKLER */
+
+.doll-options {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.doll-options button {
+    width: auto !important;
+
+    min-width: 145px;
+
+    margin: 0 !important;
+
+    padding:
+        13px 17px !important;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    background:
+        rgba(255,255,255,.38) !important;
+
+    color:
+        #71324f !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,.65) !important;
+
+    box-shadow:
+        none !important;
+
+    font-size:
+        11px !important;
+
+    transition:
+        .3s ease !important;
+}
+
+.doll-options button span {
+    font-size: 17px;
+}
+
+.doll-options button:hover {
+    background:
+        rgba(255,255,255,.75) !important;
+
+    transform:
+        translateY(-3px) !important;
+}
+
+
+/* =========================================
+   TAMAMLANMA EKRANI
+========================================= */
+
+.doll-complete {
+    display: none;
+
+    width: min(550px, 94vw);
+
+    margin: 30px auto 0;
+
+    padding: 27px 25px;
+
+    background:
+        rgba(255,255,255,.35);
+
+    border:
+        1px solid rgba(255,255,255,.70);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 50px rgba(105,35,67,.14);
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+}
+
+.doll-complete.show {
+    display: block;
+
+    animation:
+        dollCompleteAppear
+        .9s ease forwards;
+}
+
+@keyframes dollCompleteAppear {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.doll-complete-star {
+    margin-bottom: 5px;
+
+    color: white;
+
+    font-size: 28px;
+
+    animation:
+        dollStarPulse
+        1.5s ease-in-out infinite;
+}
+
+@keyframes dollStarPulse {
+
+    50% {
+        transform:
+            scale(1.3)
+            rotate(15deg);
+    }
+}
+
+.doll-complete > small {
+    color:
+        rgba(113,50,79,.55);
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+.doll-complete h2 {
+    margin:
+        5px 0 10px;
+
+    color: #71324f !important;
+
+    font-size: 28px !important;
+
+    text-shadow: none !important;
+}
+
+.doll-complete > p {
+    color:
+        rgba(95,40,65,.65) !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.6 !important;
+}
+
+
+/* HEDİYE MESAJI */
+
+.doll-gift-message {
+    margin-top: 20px;
+
+    padding: 17px;
+
+    background:
+        rgba(255,255,255,.45);
+
+    border-radius: 17px;
+}
+
+.doll-gift-message strong {
+    display: block;
+
+    color: #71324f;
+
+    font-size: 17px;
+}
+
+.doll-gift-message span {
+    display: block;
+
+    margin-top: 5px;
+
+    color:
+        rgba(95,40,65,.60);
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   KUTU TAMAMLANINCA PARLASIN
+========================================= */
+
+.doll-package.completed {
+    box-shadow:
+        0 30px 90px rgba(113,32,70,.30),
+        0 0 40px rgba(255,255,255,.55);
+
+    animation:
+        completedPackageGlow
+        2s ease-in-out infinite alternate;
+}
+
+@keyframes completedPackageGlow {
+
+    to {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 35px 95px rgba(113,32,70,.32),
+            0 0 65px rgba(255,255,255,.75);
+    }
+}
+
+
+/* =========================================
+   TELEFON
+========================================= */
+
+@media(max-width:600px) {
+
+    #screen12 {
+        padding-top: 35px;
+    }
+
+    .doll-package-content {
+        grid-template-columns:
+            1.25fr .75fr;
+
+        min-height: 270px;
+
+        padding: 11px;
+    }
+
+    .doll-preview {
+        min-height: 245px;
+    }
+
+    .doll-preview-placeholder {
+        width: 130px;
+        height: 205px;
+
+        font-size: 48px;
+    }
+
+    .doll-accessory-slots {
+        grid-template-columns: 1fr;
+    }
+
+    .doll-slot {
+        min-height: 54px;
+
+        gap: 2px;
+    }
+
+    .doll-slot > span {
+        font-size: 20px;
+    }
+
+    .doll-slot small {
+        font-size: 6px;
+    }
+
+    .doll-options {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 6px;
+    }
+
+    .doll-options button {
+        min-width: 0;
+
+        padding:
+            11px 5px !important;
+
+        flex-direction: column;
+
+        font-size:
+            9px !important;
+    }
+}
+
+/* ZÜMRÜT BEBEK - SEÇİLEN SEÇENEK */
+
+.doll-options button.selected {
+    background: #ffffff !important;
+    color: #8b3e62 !important;
+
+    border-color:
+        rgba(139,62,98,.30) !important;
+
+    transform:
+        translateY(-2px)
+        scale(1.04) !important;
+
+    box-shadow:
+        0 8px 22px
+        rgba(110,35,70,.12) !important;
+}
+
+.doll-options button:disabled {
+    opacity: .45;
+}
+
+.doll-options button.selected:disabled {
+    opacity: 1;
+}
+
 </style>
 </head>
 
@@ -4089,6 +4799,400 @@ body.story-stage-4 {
 
 </section>
 
+<!-- =========================================
+     12 - ZÜMRÜT'ÜNÜ YARAT
+========================================= -->
+
+<section class="screen doll-screen" id="screen12">
+
+    <div class="container doll-container">
+
+        <div class="small">
+            doğum günü hediyesi zamanı...
+        </div>
+
+        <h2>
+            Zümrüt'ünü yarat. 🎀
+        </h2>
+
+        <p class="doll-intro">
+            Sonuçta hediyeyi kullanacak olan sensin.
+            Birkaç küçük seçim yap bakalım.
+        </p>
+
+
+        <!-- OYUNCAK KUTUSU -->
+
+        <div class="doll-package">
+
+            <div class="doll-package-top">
+                <span>SPECIAL BIRTHDAY EDITION</span>
+
+                <strong>
+                    ZÜMRÜT
+                </strong>
+
+                <small>
+                    25 • LIMITED EDITION
+                </small>
+            </div>
+
+
+            <div class="doll-package-content">
+
+                <!-- BEBEK ALANI -->
+
+                <div class="doll-preview">
+
+                    <div class="doll-preview-placeholder">
+                        ♡
+
+                        <span>
+                            ZÜMRÜT
+                        </span>
+
+                        <small>
+                            1 / 1
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <!-- SEÇİLEN AKSESUARLAR -->
+
+                <div class="doll-accessory-slots">
+
+                    <div
+                        class="doll-slot"
+                        id="slotScent"
+                    >
+                        <span>?</span>
+                        <small>KOKU</small>
+                    </div>
+
+                    <div
+                        class="doll-slot"
+                        id="slotDrink"
+                    >
+                        <span>?</span>
+                        <small>İÇECEK</small>
+                    </div>
+
+                    <div
+                        class="doll-slot"
+                        id="slotAccessory"
+                    >
+                        <span>?</span>
+                        <small>AKSESUAR</small>
+                    </div>
+
+                    <div
+                        class="doll-slot"
+                        id="slotPower"
+                    >
+                        <span>?</span>
+                        <small>ÖZELLİK</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             SEÇİMLER
+        ================================== -->
+
+        <div class="doll-builder">
+
+
+            <!-- 1 - KOKU -->
+
+            <div
+                class="doll-choice-group active"
+                id="dollStep1"
+            >
+
+                <div class="doll-step-number">
+                    01 / 04
+                </div>
+
+                <h3>
+                    Önce kokusunu seç.
+                </h3>
+
+                <div class="doll-options">
+
+                    <button
+                        onclick="chooseDollOption(
+                            'scent',
+                            '🌸',
+                            'Çiçeksi',
+                            this
+                        )"
+                    >
+                        <span>🌸</span>
+                        Çiçeksi
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'scent',
+                            '🍓',
+                            'Tatlı',
+                            this
+                        )"
+                    >
+                        <span>🍓</span>
+                        Tatlı
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'scent',
+                            '✨',
+                            'Simli bir şey',
+                            this
+                        )"
+                    >
+                        <span>✨</span>
+                        Simli bir şey
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 - İÇECEK -->
+
+            <div
+                class="doll-choice-group"
+                id="dollStep2"
+            >
+
+                <div class="doll-step-number">
+                    02 / 04
+                </div>
+
+                <h3>
+                    Yanına ne veriyoruz?
+                </h3>
+
+                <div class="doll-options">
+
+                    <button
+                        onclick="chooseDollOption(
+                            'drink',
+                            '☕',
+                            'Kahve',
+                            this
+                        )"
+                    >
+                        <span>☕</span>
+                        Kahve
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'drink',
+                            '🥤',
+                            'Kola',
+                            this
+                        )"
+                    >
+                        <span>🥤</span>
+                        Kola
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'drink',
+                            '🧃',
+                            'Meyve suyu',
+                            this
+                        )"
+                    >
+                        <span>🧃</span>
+                        Meyve suyu
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 - AKSESUAR -->
+
+            <div
+                class="doll-choice-group"
+                id="dollStep3"
+            >
+
+                <div class="doll-step-number">
+                    03 / 04
+                </div>
+
+                <h3>
+                    Bir aksesuar eksik.
+                </h3>
+
+                <div class="doll-options">
+
+                    <button
+                        onclick="chooseDollOption(
+                            'accessory',
+                            '👜',
+                            'Çanta',
+                            this
+                        )"
+                    >
+                        <span>👜</span>
+                        Çanta
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'accessory',
+                            '👑',
+                            'Taç',
+                            this
+                        )"
+                    >
+                        <span>👑</span>
+                        Taç
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'accessory',
+                            '🪽',
+                            'Stella kanatları',
+                            this
+                        )"
+                    >
+                        <span>🪽</span>
+                        Stella Kanatları
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 - ÖZELLİK -->
+
+            <div
+                class="doll-choice-group"
+                id="dollStep4"
+            >
+
+                <div class="doll-step-number">
+                    04 / 04
+                </div>
+
+                <h3>
+                    Son olarak özel yeteneğini seç.
+                </h3>
+
+                <div class="doll-options">
+
+                    <button
+                        onclick="chooseDollOption(
+                            'power',
+                            '😒',
+                            'Profesyonel Trip',
+                            this
+                        )"
+                    >
+                        <span>😒</span>
+                        Profesyonel Trip
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'power',
+                            '💤',
+                            'Sınırsız Uyku',
+                            this
+                        )"
+                    >
+                        <span>💤</span>
+                        Sınırsız Uyku
+                    </button>
+
+                    <button
+                        onclick="chooseDollOption(
+                            'power',
+                            '💖',
+                            'Ana Karakter Enerjisi',
+                            this
+                        )"
+                    >
+                        <span>💖</span>
+                        Ana Karakter Enerjisi
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TAMAMLANINCA AÇILACAK -->
+
+        <div
+            class="doll-complete"
+            id="dollComplete"
+        >
+
+            <div class="doll-complete-star">
+                ✦
+            </div>
+
+            <small>
+                LIMITED EDITION
+            </small>
+
+            <h2>
+                Zümrüt — 1/1
+            </h2>
+
+            <p>
+                Üretim tamamlandı.
+                Aynısından bir tane daha yapılması
+                teknik olarak mümkün görünmüyor. :D
+            </p>
+
+            <div class="doll-gift-message">
+
+                <strong>
+                    Bu da senin hediyen. ♡
+                </strong>
+
+                <span>
+                    Kendin seçtin gerçi,
+                    benim işimi biraz kolaylaştırdın.
+                </span>
+
+            </div>
+
+            <button
+                onclick="flipDollPackage()"
+                id="flipDollButton"
+            >
+                HEDİYEMİ AÇ →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- 9 - ZÜMRÜT İÇİN -->
@@ -6821,7 +7925,7 @@ function extinguishCandles() {
 
     setTimeout(() => {
 
-        next(9);
+        next(12);
 
     }, 3200);
 }
@@ -6849,6 +7953,248 @@ document
             }
         );
     });
+
+
+    /* =========================================
+   ZÜMRÜT'ÜNÜ YARAT - SEÇİM SİSTEMİ
+========================================= */
+
+const dollChoices = {
+    scent: null,
+    drink: null,
+    accessory: null,
+    power: null
+};
+
+const dollStepMap = {
+    scent: 1,
+    drink: 2,
+    accessory: 3,
+    power: 4
+};
+
+const dollSlotMap = {
+    scent: "slotScent",
+    drink: "slotDrink",
+    accessory: "slotAccessory",
+    power: "slotPower"
+};
+
+
+function chooseDollOption(type, icon, name, button) {
+
+    /* Aynı aşamada iki kere seçim yapılmasın */
+    if (dollChoices[type]) {
+        return;
+    }
+
+    dollChoices[type] = {
+        icon: icon,
+        name: name
+    };
+
+
+    /* =====================================
+       SEÇİLEN BUTONU İŞARETLE
+    ===================================== */
+
+    const optionGroup =
+        button.closest(".doll-options");
+
+    if (optionGroup) {
+
+        optionGroup
+            .querySelectorAll("button")
+            .forEach(btn => {
+
+                btn.disabled = true;
+                btn.style.pointerEvents = "none";
+
+            });
+    }
+
+    button.classList.add("selected");
+
+
+    /* =====================================
+       AKSESUARI KUTUYA YERLEŞTİR
+    ===================================== */
+
+    const slot =
+        document.getElementById(
+            dollSlotMap[type]
+        );
+
+    if (slot) {
+
+        const iconElement =
+            slot.querySelector("span");
+
+        const textElement =
+            slot.querySelector("small");
+
+
+        if (iconElement) {
+            iconElement.textContent = icon;
+        }
+
+        if (textElement) {
+            textElement.textContent =
+                name.toUpperCase();
+        }
+
+
+        /* Küçük giriş animasyonu */
+
+        slot.classList.add("filled");
+
+        slot.animate(
+            [
+                {
+                    transform: "scale(.75)",
+                    opacity: .3
+                },
+
+                {
+                    transform: "scale(1.12)",
+                    opacity: 1
+                },
+
+                {
+                    transform: "scale(1.04)",
+                    opacity: 1
+                }
+            ],
+
+            {
+                duration: 550,
+                easing:
+                    "cubic-bezier(.16,.84,.32,1)"
+            }
+        );
+    }
+
+
+    /* =====================================
+       SONRAKİ SEÇİME GEÇ
+    ===================================== */
+
+    const currentStep =
+        dollStepMap[type];
+
+    const currentElement =
+        document.getElementById(
+            "dollStep" + currentStep
+        );
+
+
+    setTimeout(() => {
+
+        if (currentElement) {
+
+            currentElement.classList.remove(
+                "active"
+            );
+        }
+
+
+        /* Son seçim değilse */
+
+        if (currentStep < 4) {
+
+            const nextElement =
+                document.getElementById(
+                    "dollStep" +
+                    (currentStep + 1)
+                );
+
+            if (nextElement) {
+
+                nextElement.classList.add(
+                    "active"
+                );
+            }
+
+        }
+
+        /* 4/4 tamamlandı */
+
+        else {
+
+            finishDollCreation();
+        }
+
+    }, 650);
+}
+
+
+
+/* =========================================
+   ZÜMRÜT BEBEĞİ TAMAMLANDI
+========================================= */
+
+function finishDollCreation() {
+
+    const packageElement =
+        document.querySelector(
+            "#screen12 .doll-package"
+        );
+
+    const complete =
+        document.getElementById(
+            "dollComplete"
+        );
+
+
+    if (packageElement) {
+
+        packageElement.classList.add(
+            "completed"
+        );
+    }
+
+
+    /*
+       Oyuncak kutusunu gizli keşif
+       olarak rapora ekle.
+    */
+
+    if (
+        typeof visitStats !== "undefined"
+    ) {
+
+        visitStats.secretsFound.add(
+            "dollbox"
+        );
+    }
+
+
+    setTimeout(() => {
+
+        if (complete) {
+
+            complete.classList.add(
+                "show"
+            );
+
+
+            /* Telefonda aşağıdaki mesajı
+               otomatik görebilsin */
+
+            setTimeout(() => {
+
+                complete.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }, 250);
+        }
+
+    }, 850);
+}
+
+
 </script>
 
 <div id="stellaHint">
