@@ -1387,6 +1387,21 @@ background: rgba(255,255,255,0.20);
     background: #652943 !important;
 }
 
+.music-volume {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.music-volume input {
+    width: 110px;
+    cursor: pointer;
+    accent-color: #762f50;
+}
+
 /* Telefon */
 
 @media(max-width: 600px) {
@@ -1626,6 +1641,20 @@ background: rgba(255,255,255,0.20);
             </button>
 
         </div>
+        <div class="music-volume">
+    <span>🔉</span>
+
+    <input
+        type="range"
+        id="volumeSlider"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.7"
+    >
+
+    <span>🔊</span>
+</div>
 
     </div>
 
@@ -2951,7 +2980,14 @@ const durationDisplay =
 /* DÜŞÜK SES */
 
 music.volume = 0.12;
+const volumeSlider =
+    document.getElementById("volumeSlider");
 
+volumeSlider.value = music.volume;
+
+volumeSlider.addEventListener("input", function() {
+    music.volume = Number(this.value);
+});
 
 /* =========================
    ŞARKIYI YÜKLE
