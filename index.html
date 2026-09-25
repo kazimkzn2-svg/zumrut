@@ -1716,6 +1716,63 @@ background: rgba(255,255,255,0.20);
     }
 }
 
+/* SCREEN 3 - DAĞINIK HARFLERİN TOPLANMASI */
+
+#screen3 .scramble-text {
+    position: relative;
+}
+
+#screen3 .scramble-letter {
+    display: inline-block;
+
+    opacity: 0;
+
+    filter: blur(5px);
+
+    transform:
+        translate(
+            var(--start-x),
+            var(--start-y)
+        )
+        rotate(var(--start-r))
+        scale(1.4);
+
+    transition:
+        transform 1.5s cubic-bezier(.16,.84,.32,1),
+        opacity 0.8s ease,
+        filter 1.2s ease;
+}
+
+#screen3 .scramble-letter.arrived {
+    opacity: 1;
+    filter: blur(0);
+
+    transform:
+        translate(0, 0)
+        rotate(0deg)
+        scale(1);
+}
+
+#screen3 .scramble-space {
+    display: inline-block;
+    width: 0.28em;
+}
+
+#screen3 .scramble-button {
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+#screen3 .scramble-button.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
 </style>
 </head>
@@ -1887,21 +1944,28 @@ background: rgba(255,255,255,0.20);
 </section>
 
 
-<!-- 3 -->
 <section class="screen" id="screen3">
-    <div class="container">
+    <div class="container scramble-container">
 
-        <div class="small">aslında...</div>
+        <div class="small scramble-text">aslında...</div>
 
-        <h2>Seni tanımak hiç kolay değil.</h2>
+        <h2 class="scramble-text">
+            Seni tanımak hiç kolay değil.
+        </h2>
 
-        <p>
+        <p class="scramble-text">
             Çünkü sen sadece sevdiğin birkaç şeyden,
             birkaç alışkanlıktan veya birkaç güzel
             özellikten ibaret değilsin. (Sanırım biraz zorsun)
         </p>
 
-        <button onclick="next(4)">DEVAM ET →</button>
+        <button
+            id="screen3Button"
+            class="scramble-button"
+            onclick="next(4)"
+        >
+            DEVAM ET →
+        </button>
 
     </div>
 </section>
@@ -2210,6 +2274,10 @@ function next(number) {
 
         document.getElementById("screen" + number)
             .classList.add("active");
+
+            if (number === 3) {
+    startScreen3Animation();
+}
 
         if (number === 9) {
             startMotivationPage();
@@ -3580,6 +3648,119 @@ function toggleMusicPlayer() {
 /* İLK ŞARKIYI HAZIRLA */
 loadSong(0);
 
+/* =========================================
+   SCREEN 3 - HARFLERİN TOPLANMA ANİMASYONU
+========================================= */
+
+let screen3AnimationPlayed = false;
+
+function startScreen3Animation() {
+
+    const screen =
+        document.getElementById("screen3");
+
+    if (!screen) return;
+
+    const texts =
+        screen.querySelectorAll(".scramble-text");
+
+    const button =
+        document.getElementById("screen3Button");
+
+    if (screen3AnimationPlayed) {
+        return;
+    }
+
+    screen3AnimationPlayed = true;
+
+    texts.forEach((element, textIndex) => {
+
+        const originalText =
+            element.textContent
+                .replace(/\s+/g, " ")
+                .trim();
+
+        element.textContent = "";
+
+        [...originalText].forEach((char, charIndex) => {
+
+            if (char === " ") {
+
+                const space =
+                    document.createElement("span");
+
+                space.className =
+                    "scramble-space";
+
+                space.innerHTML = "&nbsp;";
+
+                element.appendChild(space);
+
+                return;
+            }
+
+            const letter =
+                document.createElement("span");
+
+            letter.className =
+                "scramble-letter";
+
+            letter.textContent = char;
+
+            /* Harfler sağdan ve soldan gelsin */
+            const direction =
+                Math.random() > 0.5 ? 1 : -1;
+
+            const startX =
+                direction *
+                (80 + Math.random() * 220);
+
+            const startY =
+                -80 + Math.random() * 160;
+
+            const rotation =
+                -50 + Math.random() * 100;
+
+            letter.style.setProperty(
+                "--start-x",
+                startX + "px"
+            );
+
+            letter.style.setProperty(
+                "--start-y",
+                startY + "px"
+            );
+
+            letter.style.setProperty(
+                "--start-r",
+                rotation + "deg"
+            );
+
+            element.appendChild(letter);
+
+            const delay =
+                150 +
+                (textIndex * 550) +
+                (charIndex * 22) +
+                Math.random() * 250;
+
+            setTimeout(() => {
+                letter.classList.add("arrived");
+            }, delay);
+
+        });
+
+    });
+
+    /* Yazılar bittikten sonra buton gelsin */
+    setTimeout(() => {
+
+        if (button) {
+            button.classList.add("show");
+        }
+
+    }, 3100);
+}
 
 </script>
 
