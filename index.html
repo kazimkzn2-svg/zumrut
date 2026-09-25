@@ -4686,6 +4686,22 @@ document.addEventListener(
     { passive: true }
 );
 
+
+
+function closeWelcomeGuide() {
+
+    const guide =
+        document.getElementById("welcomeGuide");
+
+    if (!guide) return;
+
+    guide.classList.add("hide");
+
+    setTimeout(() => {
+        guide.style.display = "none";
+    }, 600);
+}
+
 </script>
 
 <div id="stellaHint">
