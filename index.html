@@ -1965,10 +1965,511 @@ body.story-stage-4 {
     background: #d982a8;
 }
 
+/* =========================================
+   İLK GİRİŞ - KULLANIM KILAVUZU
+========================================= */
+
+.welcome-guide {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(73, 27, 49, 0.32);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    z-index: 1000000;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+}
+
+
+/* KAPANIRKEN */
+
+.welcome-guide.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* ANA KART */
+
+.welcome-guide-card {
+    position: relative;
+
+    width: min(650px, 94vw);
+    max-height: 88vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 38px 40px 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 246, 250, 0.97),
+            rgba(255, 225, 239, 0.94)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.95);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 30px 90px rgba(82, 25, 52, 0.30);
+
+    color: #652943;
+
+    text-align: left;
+
+    animation:
+        welcomeGuideAppear 0.8s
+        cubic-bezier(.16,.84,.32,1)
+        both;
+}
+
+
+/* KARTIN GELİŞ ANİMASYONU */
+
+@keyframes welcomeGuideAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* SAĞ ÜST ÇARPI */
+
+.welcome-guide-close {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 38px !important;
+    height: 38px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(118, 47, 80, 0.08) !important;
+
+    border:
+        1px solid rgba(118,47,80,0.12) !important;
+
+    border-radius: 50% !important;
+
+    box-shadow: none !important;
+
+    color: #762f50 !important;
+
+    font-size: 25px !important;
+    font-weight: 300;
+
+    cursor: pointer;
+
+    transition: 0.25s ease !important;
+}
+
+.welcome-guide-close:hover {
+    background: #762f50 !important;
+    color: white !important;
+
+    transform:
+        rotate(90deg) !important;
+}
+
+
+/* KÜÇÜK ÜST YAZI */
+
+.welcome-guide-small {
+    margin-bottom: 9px;
+
+    color:
+        rgba(118,47,80,0.55);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+/* BAŞLIK */
+
+.welcome-guide-card h2 {
+    margin: 0 45px 13px 0;
+
+    color: #71324f;
+
+    font-size:
+        clamp(25px, 4vw, 34px);
+
+    line-height: 1.2;
+
+    text-shadow: none;
+}
+
+
+/* GİRİŞ YAZISI */
+
+.welcome-guide-intro {
+    margin: 0 0 26px !important;
+
+    max-width: none !important;
+
+    color:
+        rgba(101,41,67,0.72) !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.65 !important;
+}
+
+
+/* MADDELER */
+
+.welcome-guide-items {
+    display: flex;
+    flex-direction: column;
+
+    gap: 11px;
+}
+
+
+.welcome-guide-item {
+    display: flex;
+
+    gap: 14px;
+
+    padding: 15px 16px;
+
+    background:
+        rgba(255,255,255,0.45);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.72);
+
+    border-radius: 17px;
+}
+
+
+/* İKON */
+
+.welcome-guide-icon {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(118,47,80,0.09);
+
+    color: #a24f74;
+
+    font-size: 17px;
+}
+
+
+/* MADDE BAŞLIKLARI */
+
+.welcome-guide-item strong {
+    display: block;
+
+    margin: 1px 0 4px;
+
+    color: #71324f;
+
+    font-size: 14px;
+}
+
+
+/* MADDE AÇIKLAMALARI */
+
+.welcome-guide-item p {
+    margin: 0 !important;
+
+    max-width: none !important;
+
+    color:
+        rgba(101,41,67,0.68) !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.55 !important;
+}
+
+
+/* KÜÇÜK GİZLİ MESAJ */
+
+.welcome-guide-secret {
+    margin-top: 18px;
+
+    color:
+        rgba(118,47,80,0.58);
+
+    text-align: center;
+
+    font-size: 11px;
+
+    font-style: italic;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* ALT BUTON */
+
+.welcome-guide-start {
+    display: block;
+
+    margin:
+        20px auto 0 !important;
+
+    padding:
+        13px 25px !important;
+
+    background:
+        #762f50 !important;
+
+    border:
+        1px solid #762f50 !important;
+
+    color:
+        white !important;
+
+    box-shadow:
+        0 8px 25px
+        rgba(118,47,80,0.20) !important;
+
+    font-size:
+        12px !important;
+
+    letter-spacing:
+        0.6px;
+}
+
+.welcome-guide-start:hover {
+    background:
+        #652943 !important;
+
+    color:
+        white !important;
+
+    transform:
+        translateY(-2px) !important;
+}
+
+
+/* TELEFON */
+
+@media (max-width: 600px) {
+
+    .welcome-guide {
+        padding: 14px;
+    }
+
+    .welcome-guide-card {
+        width: 100%;
+
+        max-height: 90vh;
+
+        padding:
+            30px
+            18px
+            24px;
+
+        border-radius: 23px;
+    }
+
+    .welcome-guide-card h2 {
+        font-size: 25px;
+    }
+
+    .welcome-guide-intro {
+        font-size: 13px !important;
+    }
+
+    .welcome-guide-item {
+        gap: 11px;
+
+        padding:
+            13px
+            12px;
+    }
+
+    .welcome-guide-icon {
+        width: 31px;
+        min-width: 31px;
+        height: 31px;
+
+        font-size: 15px;
+    }
+
+    .welcome-guide-item p {
+        font-size: 11px !important;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
+
+    <!-- =========================================
+     İLK GİRİŞ - KÜÇÜK KULLANIM KILAVUZU
+========================================= -->
+
+<div class="welcome-guide" id="welcomeGuide">
+
+    <div class="welcome-guide-card">
+
+        <button
+            class="welcome-guide-close"
+            onclick="closeWelcomeGuide()"
+            aria-label="Kapat"
+        >
+            ×
+        </button>
+
+        <div class="welcome-guide-small">
+            SİTEYE GİRMEDEN ÖNCE
+        </div>
+
+        <h2>
+            Küçük bir kullanım kılavuzu ♡
+        </h2>
+
+        <p class="welcome-guide-intro">
+            Burası sadece okuyup geçmen için hazırlanmadı.
+            Biraz dokunman, biraz kurcalaman ve bazı küçük
+            detayları kendin keşfetmen gerekiyor.
+        </p>
+
+
+        <div class="welcome-guide-items">
+
+            <div class="welcome-guide-item">
+                <div class="welcome-guide-icon">▧</div>
+
+                <div>
+                    <strong>Uçuşan fotoğraflara dokun.</strong>
+
+                    <p>
+                        İlk sayfada gördüğün fotoğrafların
+                        her birinin arkasında küçük bir anı var.
+                        Bazılarında ise göründüğünden biraz
+                        daha fazlası olabilir. :)
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="welcome-guide-item">
+                <div class="welcome-guide-icon">♫</div>
+
+                <div>
+                    <strong>Müziksiz gezmek zorunda değilsin.</strong>
+
+                    <p>
+                        Sağ alttaki müzik çalardan senin için
+                        seçtiğim 4 şarkı arasında geçiş yapabilir,
+                        müziği durdurabilir ve ses seviyesini
+                        istediğin gibi ayarlayabilirsin.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="welcome-guide-item">
+                <div class="welcome-guide-icon">✦</div>
+
+                <div>
+                    <strong>Sayfayı sadece izleme.</strong>
+
+                    <p>
+                        Butonlara, seçeneklere ve karşına çıkan
+                        küçük detaylara dokun. Arada senden bir
+                        şeyler isteyen yerler de olacak.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="welcome-guide-item">
+                <div class="welcome-guide-icon">♡</div>
+
+                <div>
+                    <strong>Ve en sonunda...</strong>
+
+                    <p>
+                        Gelecekteki kendine küçük bir not
+                        bırakabileceğin bir alan var.
+                        Yazdığın not bu tarayıcıda saklanacak
+                        ve sen silmediğin sürece bir sonraki
+                        gelişinde yine seni bekliyor olacak.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="welcome-guide-secret">
+            ✦ Bazı küçük şeyleri özellikle sakladım.
+        </div>
+
+
+        <button
+            class="welcome-guide-start"
+            onclick="closeWelcomeGuide()"
+        >
+            TAMAM, KEŞFETMEYE BAŞLAYAYIM →
+        </button>
+
+    </div>
+
+</div>
 
     <!-- MÜZİK ÇALAR -->
 
