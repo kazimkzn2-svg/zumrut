@@ -5254,6 +5254,70 @@ body.story-stage-4 {
     }
 }
 
+
+
+/* =========================================
+   OYUNCAK BEBEK KUTUSU - GÖRSEL AÇILIŞI
+========================================= */
+
+.barbie-box-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px !important;
+}
+
+.barbie-doll-reveal {
+    display: none;
+    margin-top: 22px;
+    opacity: 0;
+    transform: translateY(18px) scale(.96);
+}
+
+.barbie-doll-reveal.show {
+    display: block;
+    animation: barbieDollReveal .75s cubic-bezier(.16,.84,.32,1) forwards;
+}
+
+.barbie-doll-reveal img {
+    display: block;
+    width: min(340px, 82vw);
+    max-height: 58vh;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.78);
+    box-shadow: 0 20px 55px rgba(105,35,67,.22);
+}
+
+.barbie-gift-message {
+    margin-top: 16px;
+    color: #71324f;
+}
+
+.barbie-gift-message strong,
+.barbie-gift-message span {
+    display: block;
+}
+
+.barbie-gift-message strong {
+    font-size: 18px;
+}
+
+.barbie-gift-message span {
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    opacity: .65;
+}
+
+@keyframes barbieDollReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 </style>
 </head>
 
@@ -6474,165 +6538,114 @@ body.story-stage-4 {
 
     <div class="container barbie-container">
 
-        <div class="small">
-            son bir kişilik testi...
-        </div>
+        <div class="small">son bir kişilik testi...</div>
 
-        <h2>
-            Bugün hangi oyuncak bebekin? 🎀
-        </h2>
+        <h2>Bugün hangi oyuncak bebeksin? 🎀</h2>
 
         <p class="barbie-intro">
             Çok düşünme. İlk içinden geleni seç.
             Sonuçların bilimsel bir dayanağı kesinlikle yok. :D
         </p>
 
-
         <div class="barbie-cards">
 
-            <!-- CEO -->
-
+            <!-- PATRON BEBEK -->
             <button
                 class="barbie-card"
                 onclick="chooseBarbie(
-                    'CEO Bebek',
+                    'Patron Bebek',
                     '💼',
-                    'Şirketin ne yaptığı belli değil ama yönetim tamamen Zümrüt\\'te.',
+                    'Ne yaptığı tam belli değil ama yönetim kesinlikle sende. Herkes işine baksın. :D',
+                    'patron-bebek.png',
                     this
                 )"
             >
-
-                <span class="barbie-card-icon">
-                    💼
-                </span>
-
-                <strong>
-                    CEO Bebek
-                </strong>
-
-                <small>
-                    Her şeyi kontrol altında sanıyor.
-                </small>
-
+                <span class="barbie-card-icon">💼</span>
+                <strong>Patron Bebek</strong>
+                <small>Kontrol daima onda.</small>
             </button>
 
-
-            <!-- DRAMA QUEEN -->
-
+            <!-- DRAMA BEBEĞİ -->
             <button
                 class="barbie-card"
                 onclick="chooseBarbie(
-                    'Drama Queen Bebek',
+                    'Drama Bebeği',
                     '💅',
                     'Bunu seçmene şaşırmış gibi davranmam gerekiyor mu? :D',
+                    'drama-bebegi.png',
                     this
                 )"
             >
-
-                <span class="barbie-card-icon">
-                    💅
-                </span>
-
-                <strong>
-                    Drama Queen Bebek
-                </strong>
-
-                <small>
-                    Sorun yokken bile biraz drama çıkabilir.
-                </small>
-
+                <span class="barbie-card-icon">💅</span>
+                <strong>Drama Bebeği</strong>
+                <small>Sorun yokken bile biraz drama çıkabilir.</small>
             </button>
 
-
-            <!-- BÜYÜMÜŞ -->
-
+            <!-- BÜYÜMÜŞ BEBEK -->
             <button
                 class="barbie-card"
                 onclick="chooseBarbie(
                     'Büyümüş Bebek',
                     '🎀',
-                    'Kimlikte büyümüş olabilir. Oyuncak görünce verdiğin tepkiler konusunda yorum yapmayacağım. :D',
+                    'Kimlikte 25 olmuş olabilir. Oyuncak görünce verdiğin tepkiler konusunda yorum yapmayacağım. :D',
+                    'buyumus-bebek.png',
                     this
                 )"
             >
-
-                <span class="barbie-card-icon">
-                    🎀
-                </span>
-
-                <strong>
-                    Büyümüş Bebek
-                </strong>
-
-                <small>
-                    25 yaşında ama oyuncak reyonuna hâlâ bakıyor.
-                </small>
-
+                <span class="barbie-card-icon">🎀</span>
+                <strong>Büyümüş Bebek</strong>
+                <small>25 yaşında ama oyuncak reyonuna hâlâ bakıyor.</small>
             </button>
 
-
-            <!-- UYKUSUZ -->
-
+            <!-- UYKUSUZ BEBEK -->
             <button
                 class="barbie-card"
                 onclick="chooseBarbie(
                     'Uykusuz Bebek',
                     '😴',
-                    'Bu modelin çalışması için kahve ve yaklaşık 14 saat uyku öneriliyor.',
+                    'Bu modelin düzgün çalışması için kahve ve yaklaşık 14 saat uyku öneriliyor.',
+                    'uykusuz-bebek.png',
                     this
                 )"
             >
-
-                <span class="barbie-card-icon">
-                    😴
-                </span>
-
-                <strong>
-                    Uykusuz Bebek
-                </strong>
-
-                <small>
-                    Hayatta ama ne kadar hayatta olduğu tartışılır.
-                </small>
-
+                <span class="barbie-card-icon">😴</span>
+                <strong>Uykusuz Bebek</strong>
+                <small>Hayatta ama ne kadar hayatta olduğu tartışılır.</small>
             </button>
 
         </div>
 
-
         <!-- SEÇİM SONUCU -->
-
-        <div
-            class="barbie-result"
-            id="barbieResult"
-        >
-
-            <div
-                class="barbie-result-icon"
-                id="barbieResultIcon"
-            >
-                🎀
-            </div>
-
-            <small>
-                BUGÜNKÜ MODEL
-            </small>
-
-            <h2 id="barbieResultTitle">
-                Bebek
-            </h2>
-
+        <div class="barbie-result" id="barbieResult">
+            <div class="barbie-result-icon" id="barbieResultIcon">🎀</div>
+            <small>BUGÜNKÜ MODEL</small>
+            <h2 id="barbieResultTitle">Bebek</h2>
             <p id="barbieResultText"></p>
 
-        </div>
+            <button
+                type="button"
+                class="barbie-box-open"
+                id="barbieBoxOpen"
+                onclick="openBarbieBox()"
+            >
+                KUTUMU AÇ 🎁
+            </button>
 
+            <div class="barbie-doll-reveal" id="barbieDollReveal">
+                <img id="barbieDollImage" src="" alt="Seçilen Zümrüt oyuncak bebeği">
+                <div class="barbie-gift-message">
+                    <strong>Bu da senin hediyen. 🎀</strong>
+                    <span>Limited Edition Zümrüt — 1/1</span>
+                </div>
+            </div>
+        </div>
 
         <button
             class="barbie-continue"
             id="barbieContinue"
             onclick="next(9)"
         >
-            BENİM BEBEĞİM BUYMUŞ →
+            HEDİYEMİ ALDIM →
         </button>
 
     </div>
@@ -10179,6 +10192,7 @@ function chooseBarbie(
     name,
     icon,
     comment,
+    imageSrc,
     button
 ) {
 
@@ -10188,122 +10202,80 @@ function chooseBarbie(
 
     barbieAlreadyChosen = true;
 
-
-    const cards =
-        document.querySelector(
-            ".barbie-cards"
-        );
-
-    const allCards =
-        document.querySelectorAll(
-            ".barbie-card"
-        );
-
-    const result =
-        document.getElementById(
-            "barbieResult"
-        );
-
-    const resultIcon =
-        document.getElementById(
-            "barbieResultIcon"
-        );
-
-    const resultTitle =
-        document.getElementById(
-            "barbieResultTitle"
-        );
-
-    const resultText =
-        document.getElementById(
-            "barbieResultText"
-        );
-
-    const continueButton =
-        document.getElementById(
-            "barbieContinue"
-        );
-
-
-    /* Seçilen kart */
+    const cards = document.querySelector(".barbie-cards");
+    const allCards = document.querySelectorAll(".barbie-card");
+    const result = document.getElementById("barbieResult");
+    const resultIcon = document.getElementById("barbieResultIcon");
+    const resultTitle = document.getElementById("barbieResultTitle");
+    const resultText = document.getElementById("barbieResultText");
+    const dollImage = document.getElementById("barbieDollImage");
+    const dollReveal = document.getElementById("barbieDollReveal");
+    const openButton = document.getElementById("barbieBoxOpen");
+    const continueButton = document.getElementById("barbieContinue");
 
     if (cards) {
-        cards.classList.add(
-            "has-selection"
-        );
+        cards.classList.add("has-selection");
     }
 
-    button.classList.add(
-        "selected"
-    );
-
-
-    /* Diğer kartları kilitle */
+    if (button) {
+        button.classList.add("selected");
+    }
 
     allCards.forEach(card => {
-
-        card.style.pointerEvents =
-            "none";
-
+        card.style.pointerEvents = "none";
     });
 
+    if (resultIcon) resultIcon.textContent = icon;
+    if (resultTitle) resultTitle.textContent = name;
+    if (resultText) resultText.textContent = comment;
 
-    /* Sonucu yaz */
-
-    if (resultIcon) {
-        resultIcon.textContent =
-            icon;
+    if (dollImage) {
+        dollImage.src = imageSrc;
+        dollImage.alt = name + " — Zümrüt";
     }
 
-    if (resultTitle) {
-        resultTitle.textContent =
-            name;
+    if (dollReveal) {
+        dollReveal.classList.remove("show");
     }
 
-    if (resultText) {
-        resultText.textContent =
-            comment;
+    if (openButton) {
+        openButton.style.display = "inline-flex";
     }
 
+    if (continueButton) {
+        continueButton.classList.remove("show");
+    }
 
-    /* Final raporuna kaydet */
-
-    if (
-        typeof visitStats !== "undefined"
-    ) {
-
+    if (typeof visitStats !== "undefined") {
         visitStats.barbieChoice = {
             name: name,
             icon: icon
         };
     }
 
-
-    /* Sonucu göster */
-
     setTimeout(() => {
-
-        if (result) {
-            result.classList.add(
-                "show"
-            );
-        }
-
+        if (result) result.classList.add("show");
     }, 350);
+}
 
+function openBarbieBox() {
+    const dollReveal = document.getElementById("barbieDollReveal");
+    const openButton = document.getElementById("barbieBoxOpen");
+    const continueButton = document.getElementById("barbieContinue");
 
-    /* Devam butonu */
+    if (openButton) {
+        openButton.style.display = "none";
+    }
+
+    if (dollReveal) {
+        dollReveal.classList.add("show");
+    }
 
     setTimeout(() => {
-
         if (continueButton) {
-
-            continueButton.classList.add(
-                "show"
-            );
+            continueButton.classList.add("show");
         }
-
-    }, 900);
+    }, 650);
 }
 
 </script>
