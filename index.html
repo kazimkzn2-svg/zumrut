@@ -1111,6 +1111,27 @@ background: rgba(255,255,255,0.20);
 
     text-align:
         right;
+
+        .note-delete {
+    margin-top: 12px;
+    padding: 7px 14px;
+
+    border: 1px solid rgba(118,47,80,.25);
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.35);
+    color: #762f50;
+
+    font-size: 11px;
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.note-delete:hover {
+    background: #762f50;
+    color: white;
+}
 }
 
 
@@ -2752,6 +2773,24 @@ async function loadFutureNotes() {
                         date
                     );
 
+const deleteButton =
+    document.createElement("button");
+
+deleteButton.className =
+    "note-delete";
+
+deleteButton.textContent =
+    "SİL";
+
+deleteButton.onclick =
+    function() {
+        deleteFutureNote(note.id);
+    };
+
+card.appendChild(
+    deleteButton
+);
+
 
                     gallery.appendChild(
                         card
@@ -2761,6 +2800,36 @@ async function loadFutureNotes() {
             );
 
         };
+}
+
+async function deleteFutureNote(id) {
+
+    const confirmed = confirm(
+        "Bu notu silmek istediğine emin misin?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    if (!noteDatabase) {
+        await openNoteDatabase();
+    }
+
+    const transaction =
+        noteDatabase.transaction(
+            "notes",
+            "readwrite"
+        );
+
+    const store =
+        transaction.objectStore("notes");
+
+    store.delete(id);
+
+    transaction.oncomplete = function() {
+        loadFutureNotes();
+    };
 }
 
 
