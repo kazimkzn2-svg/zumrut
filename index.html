@@ -2812,6 +2812,162 @@ body.story-stage-4 {
 
 }
 
+/* =========================================
+   ZÜMRÜT - KURCALAMA RAPORU
+========================================= */
+
+.visit-report {
+    width: min(700px, 100%);
+    margin: 45px auto 20px;
+    padding: 30px;
+
+    background: rgba(255,255,255,0.22);
+
+    border:
+        1px solid rgba(255,255,255,0.65);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 45px rgba(100,30,65,0.14);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    transform: translateY(20px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.visit-report.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.visit-report-small {
+    margin-bottom: 8px;
+
+    color: rgba(118,47,80,0.55);
+
+    font-size: 10px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.visit-report h2 {
+    margin-bottom: 25px;
+
+    color: #71324f !important;
+
+    font-size: 25px !important;
+
+    text-shadow: none !important;
+}
+
+.visit-report-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.visit-stat {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 16px;
+
+    background:
+        rgba(255,255,255,0.38);
+
+    border:
+        1px solid rgba(255,255,255,0.7);
+
+    border-radius: 17px;
+
+    text-align: left;
+}
+
+.visit-stat > span {
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(118,47,80,0.09);
+
+    border-radius: 50%;
+
+    color: #9c4c70;
+
+    font-size: 17px;
+}
+
+.visit-stat small {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color:
+        rgba(101,41,67,0.60);
+
+    font-size: 11px;
+}
+
+.visit-stat strong {
+    color: #652943;
+
+    font-size: 17px;
+}
+
+.visit-stat-wide {
+    grid-column: 1 / -1;
+}
+
+.visit-report-comment {
+    margin-top: 22px !important;
+
+    color:
+        rgba(101,41,67,0.65) !important;
+
+    font-size: 12px !important;
+
+    font-style: italic;
+}
+
+
+/* TELEFON */
+
+@media(max-width:600px) {
+
+    .visit-report {
+        padding: 21px 15px;
+    }
+
+    .visit-report-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visit-stat-wide {
+        grid-column: auto;
+    }
+
+    .visit-report h2 {
+        font-size: 21px !important;
+    }
+}
+
 </style>
 </head>
 
@@ -3334,6 +3490,67 @@ body.story-stage-4 {
 
         </div>
 
+<!-- ZÜMRÜT'ÜN KURCALAMA RAPORU -->
+
+<div class="visit-report" id="visitReport">
+
+    <div class="visit-report-small">
+        GİZLİ RAPOR ✦
+    </div>
+
+    <h2>
+        Zümrüt'ün bu siteyi kurcalama raporu
+    </h2>
+
+    <div class="visit-report-grid">
+
+        <div class="visit-stat">
+            <span>📷</span>
+            <div>
+                <small>Fotoğraf anısı keşfedildi</small>
+                <strong id="statPhotos">0/5</strong>
+            </div>
+        </div>
+
+        <div class="visit-stat">
+            <span>×</span>
+            <div>
+                <small>Yanlış cevap verildi</small>
+                <strong id="statWrong">0 kez</strong>
+            </div>
+        </div>
+
+        <div class="visit-stat">
+            <span>✦</span>
+            <div>
+                <small>Gizli şey bulundu</small>
+                <strong id="statSecrets">0/6</strong>
+            </div>
+        </div>
+
+        <div class="visit-stat">
+            <span>⌛</span>
+            <div>
+                <small>Burada geçirilen süre</small>
+                <strong id="statTime">00:00</strong>
+            </div>
+        </div>
+
+        <div class="visit-stat visit-stat-wide">
+            <span>☾</span>
+            <div>
+                <small>Dilek tutuldu</small>
+                <strong id="statWish">Henüz değil</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="visit-report-comment" id="visitReportComment">
+        Bakalım siteyi ne kadar kurcalamışsın. :D
+    </p>
+
+</div>
 
         <!-- GELECEĞE NOT -->
 
@@ -3631,6 +3848,7 @@ function wrongAnswer(button) {
     if (button.classList.contains("wrong")) {
         return;
     }
+    visitStats.wrongAnswers++;
 
     // Butonu kırmızı yap ve yok et
     button.classList.add("wrong");
@@ -3806,6 +4024,13 @@ function startTypewriter() {
         memoryCorner.classList.add("show");
 
     }, 100);
+    /* Daktilo bittikten sonra kurcalama raporunu göster */
+
+setTimeout(() => {
+
+    showVisitReport();
+
+}, 700);
 }
     }
 
@@ -3848,6 +4073,7 @@ const flyingPhotos = [
 let stellaClickCount = 0;
 
 function showStellaMessage() {
+    visitStats.secretsFound.add("stella");
 
     // Aynı anda iki tane oluşmasın
     const oldMessage =
@@ -4043,6 +4269,7 @@ if (selectedPhoto.src === "foto3.jpeg") {
 }
 
 function openPhotoMemory(imageSrc, memoryText) {
+    visitStats.openedPhotos.add(imageSrc);
 
     // Daha önce açıksa tekrar oluşturma
     const oldModal = document.getElementById("photoMemoryModal");
@@ -5250,6 +5477,19 @@ function closeWelcomeGuide() {
    DİLEK / GECE GÖKYÜZÜ
 ========================================= */
 
+/* =========================================
+   ZÜMRÜT - ZİYARET İSTATİSTİKLERİ
+   Sayfa yenilenince otomatik sıfırlanır
+========================================= */
+
+const visitStats = {
+    openedPhotos: new Set(),
+    wrongAnswers: 0,
+    secretsFound: new Set(),
+    startedAt: Date.now(),
+    wishMade: false
+};
+
 let wishMade = false;
 
 
@@ -5335,6 +5575,9 @@ function makeWish() {
     }
 
     wishMade = true;
+
+    visitStats.wishMade = true;
+visitStats.secretsFound.add("wish");
 
 
     const touchArea =
@@ -5430,6 +5673,98 @@ function makeWish() {
 /* Sayfa yüklenince yıldızları hazırla */
 
 createWishStars();
+
+/* =========================================
+   ZÜMRÜT - KURCALAMA RAPORUNU GÖSTER
+========================================= */
+
+function showVisitReport() {
+
+    const report =
+        document.getElementById("visitReport");
+
+    if (!report) return;
+
+
+    /* GEÇİRİLEN SÜRE */
+
+    const elapsed =
+        Date.now() - visitStats.startedAt;
+
+    const totalSeconds =
+        Math.floor(elapsed / 1000);
+
+    const minutes =
+        Math.floor(totalSeconds / 60);
+
+    const seconds =
+        totalSeconds % 60;
+
+    const formattedTime =
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+
+
+    /* İSTATİSTİKLERİ EKRANA YAZ */
+
+    document.getElementById("statPhotos").textContent =
+        visitStats.openedPhotos.size + "/5";
+
+    document.getElementById("statWrong").textContent =
+        visitStats.wrongAnswers + " kez";
+
+    document.getElementById("statSecrets").textContent =
+        visitStats.secretsFound.size + "/6";
+
+    document.getElementById("statTime").textContent =
+        formattedTime;
+
+    document.getElementById("statWish").textContent =
+        visitStats.wishMade
+            ? "Tutuldu ✓"
+            : "Tutulmadı";
+
+
+    /* SONUCA GÖRE KÜÇÜK YORUM */
+
+    const comment =
+        document.getElementById(
+            "visitReportComment"
+        );
+
+    const discoveries =
+        visitStats.openedPhotos.size +
+        visitStats.secretsFound.size;
+
+
+    if (discoveries >= 8) {
+
+        comment.textContent =
+            "Sen bu siteyi gezmemişsin, resmen didik didik etmişsin. :D";
+    }
+
+    else if (discoveries >= 5) {
+
+        comment.textContent =
+            "Fena değil... çoğu şeyi bulmuşsun. Ama hâlâ sakladığım şeyler olabilir. :)";
+    }
+
+    else {
+
+        comment.textContent =
+            "Biraz hızlı geçmişsin sanki... Burada hâlâ bulmadığın şeyler var. :D";
+    }
+
+
+    /* RAPORU YAVAŞÇA GÖSTER */
+
+    setTimeout(() => {
+
+        report.classList.add("show");
+
+    }, 800);
+}
 
 </script>
 
