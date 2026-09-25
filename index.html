@@ -2351,6 +2351,467 @@ body.story-stage-4 {
 
 }
 
+/* =========================================
+   SCREEN 10 - DİLEK / GECE GÖKYÜZÜ
+========================================= */
+
+#screen10 {
+    background:
+        radial-gradient(
+            circle at 50% 75%,
+            #392a4d 0%,
+            #1d1832 45%,
+            #0d0c1c 100%
+        );
+
+    color: #fff;
+
+    overflow: hidden;
+
+    transition:
+        background 2s ease;
+}
+
+
+/* Hafif gece parlaması */
+
+#screen10::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255, 203, 230, 0.08),
+            transparent 45%
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* İçerik yıldızların önünde */
+
+#screen10 .wish-container {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* Küçük üst yazı */
+
+#screen10 .small {
+    color: rgba(255,255,255,0.55);
+}
+
+
+/* Başlık */
+
+#screen10 h2 {
+    color: #fff;
+
+    text-shadow:
+        0 0 25px
+        rgba(255,205,230,0.18);
+}
+
+
+/* Açıklama */
+
+#screen10 #wishInstruction {
+    color: rgba(255,255,255,0.68);
+}
+
+
+/* =========================================
+   YILDIZLAR
+========================================= */
+
+.wish-stars {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+.wish-star {
+    position: absolute;
+
+    width: var(--star-size);
+    height: var(--star-size);
+
+    background: white;
+
+    border-radius: 50%;
+
+    opacity: var(--star-opacity);
+
+    box-shadow:
+        0 0 7px
+        rgba(255,255,255,0.8);
+
+    animation:
+        wishStarTwinkle
+        var(--star-speed)
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes wishStarTwinkle {
+
+    from {
+        opacity: 0.15;
+        transform: scale(0.65);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.35);
+    }
+}
+
+
+/* Bazı yıldızlar + şeklinde */
+
+.wish-star.special {
+    width: auto;
+    height: auto;
+
+    background: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    color: rgba(255,255,255,0.85);
+
+    font-size: var(--star-size);
+
+    animation:
+        wishSpecialTwinkle
+        var(--star-speed)
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes wishSpecialTwinkle {
+
+    from {
+        opacity: 0.2;
+
+        transform:
+            scale(0.7)
+            rotate(0deg);
+    }
+
+    to {
+        opacity: 0.9;
+
+        transform:
+            scale(1.15)
+            rotate(20deg);
+    }
+}
+
+
+/* =========================================
+   AY / DOKUNMA ALANI
+========================================= */
+
+.wish-sky-touch {
+    position: relative;
+
+    width: 190px;
+    height: 190px;
+
+    margin:
+        32px auto 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.wish-sky-touch:hover {
+    transform: scale(1.04);
+}
+
+
+.wish-moon {
+    display: block;
+
+    color: #fff2ca;
+
+    font-size: 92px;
+
+    line-height: 1;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255,238,185,0.38)
+        )
+        drop-shadow(
+            0 0 40px
+            rgba(255,214,230,0.16)
+        );
+
+    animation:
+        wishMoonFloat
+        4s ease-in-out
+        infinite;
+}
+
+
+@keyframes wishMoonFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(1deg);
+    }
+}
+
+
+.wish-touch-text {
+    margin-top: 14px;
+
+    color:
+        rgba(255,255,255,0.45);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    animation:
+        wishTouchPulse
+        2s ease-in-out
+        infinite;
+}
+
+
+@keyframes wishTouchPulse {
+
+    0%, 100% {
+        opacity: 0.35;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+}
+
+
+/* =========================================
+   KAYAN YILDIZ
+========================================= */
+
+.shooting-star {
+    position: fixed;
+
+    left: -160px;
+    top: 20%;
+
+    width: 120px;
+    height: 2px;
+
+    z-index: 99999;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.35),
+            #fff
+        );
+
+    box-shadow:
+        0 0 8px white,
+        0 0 20px rgba(255,210,230,0.7);
+
+    transform:
+        rotate(-18deg);
+
+    animation:
+        shootingStarFly
+        1.35s
+        cubic-bezier(.2,.65,.35,1)
+        forwards;
+}
+
+
+.shooting-star::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: -7px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: white;
+
+    font-size: 17px;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 20px #ffcce2;
+}
+
+
+@keyframes shootingStarFly {
+
+    0% {
+        left: -160px;
+        top: 18%;
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 110vw;
+        top: 62%;
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   DİLEK TUTULDUKTAN SONRA
+========================================= */
+
+.wish-result {
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+
+.wish-result.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.wish-result strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #fff;
+
+    font-size: 17px;
+}
+
+
+.wish-result span {
+    display: block;
+
+    color:
+        rgba(255,255,255,0.68);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* Devam butonu başlangıçta gizli */
+
+.wish-continue {
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        background 0.3s ease;
+}
+
+
+.wish-continue.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* Mobil */
+
+@media(max-width:600px) {
+
+    .wish-sky-touch {
+        width: 165px;
+        height: 165px;
+
+        margin-top: 25px;
+    }
+
+    .wish-moon {
+        font-size: 78px;
+    }
+
+}
+
 </style>
 </head>
 
@@ -2454,7 +2915,36 @@ body.story-stage-4 {
 
         </div>
 
+<div class="welcome-guide-item">
+    <div class="welcome-guide-icon">☾</div>
 
+    <div>
+        <strong>Bir dilek hakkın var.</strong>
+
+        <p>
+            Bir yerde gökyüzü biraz kararabilir.
+            Oraya geldiğinde acele etme.
+            Bir dilek tut ve senden isteneni yap.
+            Ama tuttuğun dileği herkese anlatma. :)
+        </p>
+    </div>
+</div>
+
+
+<div class="welcome-guide-item">
+    <div class="welcome-guide-icon">⌁</div>
+
+    <div>
+        <strong>Bu site seni biraz izliyor olabilir.</strong>
+
+        <p>
+            Neleri kurcaladığın, kaç kere yanıldığın
+            ve burada ne kadar vakit geçirdiğin gibi
+            birkaç küçük detay yol boyunca kaybolmuyor.
+            Sonunda nedenini anlayacaksın. :D
+        </p>
+    </div>
+</div>
         <div class="welcome-guide-secret">
             ✦ Bazı küçük şeyleri özellikle sakladım.
         </div>
@@ -2726,10 +3216,61 @@ body.story-stage-4 {
            Bütün her şey aslında yüzünde bir tebessüm oluşturmak için. 
         </p>
 
-        <button onclick="next(9)">Devam etmek istiyor musun? →</button>
+        <button onclick="next(10)">Devam etmek istiyor musun? →</button>
 
     </div>
 </section>
+
+<!-- 10 - DİLEK EKRANI -->
+<section class="screen wish-screen" id="screen10">
+
+    <div class="wish-stars" id="wishStars"></div>
+
+    <div class="container wish-container">
+
+        <div class="small">
+            doğum günlerinin bir kuralı vardır...
+        </div>
+
+        <h2 id="wishTitle">
+            Bir dilek tut.
+        </h2>
+
+        <p id="wishInstruction">
+            Hazır olduğunda gökyüzüne dokun.
+        </p>
+
+        <div class="wish-sky-touch" onclick="makeWish()">
+            <span class="wish-moon">☾</span>
+
+            <div class="wish-touch-text">
+                gökyüzüne dokun
+            </div>
+        </div>
+
+        <div class="wish-result" id="wishResult">
+            <strong>
+                Tamamdır. ✦
+            </strong>
+
+            <span>
+                Ben hariç kimseye söyleme.<br>
+                Yoksa gerçekleşmez. :)
+            </span>
+        </div>
+
+        <button
+            id="wishContinue"
+            class="wish-continue"
+            onclick="next(9)"
+        >
+            DİLEĞİMİ TUTTUM →
+        </button>
+
+    </div>
+
+</section>
+
 
 
 <!-- 9 - ZÜMRÜT İÇİN -->
@@ -2978,6 +3519,9 @@ document.body.classList.remove(
 
 if (number <= 3) {
     document.body.classList.add("story-stage-1");
+}
+if (number === 10) {
+    createWishStars();
 }
 else if (number <= 5) {
     document.body.classList.add("story-stage-2");
@@ -4701,6 +5245,191 @@ function closeWelcomeGuide() {
         guide.style.display = "none";
     }, 600);
 }
+
+/* =========================================
+   DİLEK / GECE GÖKYÜZÜ
+========================================= */
+
+let wishMade = false;
+
+
+/* Yıldızları oluştur */
+
+function createWishStars() {
+
+    const sky =
+        document.getElementById("wishStars");
+
+    if (!sky) return;
+
+
+    /* Daha önce oluşturulduysa tekrar oluşturma */
+
+    if (sky.children.length > 0) {
+        return;
+    }
+
+
+    for (let i = 0; i < 75; i++) {
+
+        const star =
+            document.createElement("span");
+
+        star.className =
+            "wish-star";
+
+
+        /* Arada daha belirgin yıldız */
+
+        if (Math.random() < 0.12) {
+
+            star.classList.add("special");
+
+            star.textContent = "✦";
+        }
+
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+
+        const size =
+            1 + Math.random() * 3;
+
+        star.style.setProperty(
+            "--star-size",
+            size + "px"
+        );
+
+
+        star.style.setProperty(
+            "--star-opacity",
+            0.25 + Math.random() * 0.7
+        );
+
+
+        star.style.setProperty(
+            "--star-speed",
+            (1.5 + Math.random() * 3) + "s"
+        );
+
+
+        star.style.animationDelay =
+            (Math.random() * 3) + "s";
+
+
+        sky.appendChild(star);
+    }
+}
+
+
+/* Dilek tutulunca */
+
+function makeWish() {
+
+    if (wishMade) {
+        return;
+    }
+
+    wishMade = true;
+
+
+    const touchArea =
+        document.querySelector(
+            ".wish-sky-touch"
+        );
+
+    const instruction =
+        document.getElementById(
+            "wishInstruction"
+        );
+
+    const result =
+        document.getElementById(
+            "wishResult"
+        );
+
+    const continueButton =
+        document.getElementById(
+            "wishContinue"
+        );
+
+
+    /* Dokun yazısını kaldır */
+
+    if (instruction) {
+
+        instruction.style.transition =
+            "opacity .5s ease";
+
+        instruction.style.opacity = "0";
+    }
+
+
+    if (touchArea) {
+
+        touchArea.style.transition =
+            "opacity .8s ease, transform .8s ease";
+
+        touchArea.style.opacity = "0.35";
+
+        touchArea.style.transform =
+            "scale(0.92)";
+
+        touchArea.style.pointerEvents =
+            "none";
+    }
+
+
+    /* Kayan yıldız */
+
+    const shootingStar =
+        document.createElement("div");
+
+    shootingStar.className =
+        "shooting-star";
+
+    document.body.appendChild(
+        shootingStar
+    );
+
+
+    setTimeout(() => {
+
+        shootingStar.remove();
+
+    }, 1500);
+
+
+    /* Yıldız geçtikten sonra mesaj */
+
+    setTimeout(() => {
+
+        if (result) {
+            result.classList.add("show");
+        }
+
+    }, 1100);
+
+
+    /* En son devam butonu */
+
+    setTimeout(() => {
+
+        if (continueButton) {
+            continueButton.classList.add("show");
+        }
+
+    }, 2200);
+}
+
+
+/* Sayfa yüklenince yıldızları hazırla */
+
+createWishStars();
 
 </script>
 
