@@ -2968,6 +2968,542 @@ body.story-stage-4 {
     }
 }
 
+/* =========================================
+   SCREEN 11 - DOĞUM GÜNÜ PASTASI
+========================================= */
+
+#screen11 {
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #f7c5d9 0%,
+            #eca8c5 55%,
+            #df8fb1 100%
+        );
+}
+
+.candle-container {
+    position: relative;
+    z-index: 5;
+}
+
+#candleInstruction {
+    transition: opacity .6s ease;
+}
+
+
+/* =========================================
+   PASTA
+========================================= */
+
+.birthday-cake {
+    position: relative;
+
+    width: 280px;
+    height: 245px;
+
+    margin: 35px auto 20px;
+}
+
+
+/* PASTANIN ÜSTÜ */
+
+.cake-top {
+    position: absolute;
+
+    left: 50%;
+    bottom: 95px;
+
+    width: 230px;
+    height: 48px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8f4,
+            #f8d9df
+        );
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 8px 18px
+        rgba(112,45,74,0.12);
+
+    z-index: 4;
+}
+
+
+/* PASTA GÖVDESİ */
+
+.cake-body {
+    position: absolute;
+
+    left: 50%;
+    bottom: 30px;
+
+    width: 230px;
+    height: 90px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #f5c2d2,
+            #ffe1e9,
+            #f5c2d2
+        );
+
+    border-radius:
+        8px 8px 35px 35px;
+
+    color: #a04e70;
+
+    font-size: 17px;
+
+    box-shadow:
+        0 18px 35px
+        rgba(100,35,65,0.18);
+
+    z-index: 3;
+}
+
+
+.cake-body span:nth-child(2) {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+
+/* TABAK */
+
+.cake-plate {
+    position: absolute;
+
+    left: 50%;
+    bottom: 12px;
+
+    width: 270px;
+    height: 28px;
+
+    transform: translateX(-50%);
+
+    background:
+        rgba(255,255,255,0.72);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 12px 25px
+        rgba(100,35,65,0.15);
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   25 MUMLARI
+========================================= */
+
+.number-candle {
+    position: absolute;
+
+    bottom: 125px;
+
+    width: 75px;
+    height: 95px;
+
+    z-index: 10;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+.candle-two {
+    left: 62px;
+}
+
+
+.candle-five {
+    right: 62px;
+}
+
+
+.number-shape {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    transform:
+        translateX(-50%);
+
+    color: #8f3f64;
+
+    font-size: 75px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    text-shadow:
+        0 3px 0
+        rgba(255,255,255,0.4);
+}
+
+
+/* =========================================
+   ALEV
+========================================= */
+
+.candle-flame {
+    position: absolute;
+
+    left: 50%;
+    top: -24px;
+
+    width: 17px;
+    height: 27px;
+
+    transform:
+        translateX(-50%)
+        rotate(2deg);
+
+    transform-origin:
+        50% 100%;
+
+    background:
+        radial-gradient(
+            ellipse at bottom,
+            #fff6a5 0%,
+            #ffd65a 35%,
+            #ff8a3d 68%,
+            rgba(255,80,40,0) 72%
+        );
+
+    border-radius:
+        55% 55% 50% 50%;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,165,55,0.9)
+        );
+
+    animation:
+        candleFlameMove
+        .45s ease-in-out
+        infinite alternate;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+
+@keyframes candleFlameMove {
+
+    0% {
+        transform:
+            translateX(-50%)
+            rotate(-7deg)
+            scaleY(.92);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(7deg)
+            scaleY(1.08);
+    }
+}
+
+
+/* ÜFLERKEN ALEVİN SALLANMASI */
+
+.candle-flame.blowing {
+    animation:
+        candleFlameBlowing
+        .12s ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes candleFlameBlowing {
+
+    from {
+        transform:
+            translateX(-65%)
+            skewX(-22deg)
+            scaleY(.85);
+    }
+
+    to {
+        transform:
+            translateX(-75%)
+            skewX(-38deg)
+            scaleY(.65);
+    }
+}
+
+
+/* SÖNMÜŞ ALEV */
+
+.candle-flame.out {
+    opacity: 0;
+
+    transform:
+        translateX(-80%)
+        scale(.1);
+}
+
+
+/* =========================================
+   DUMAN
+========================================= */
+
+.candle-smoke {
+    position: absolute;
+
+    left: 50%;
+    top: -30px;
+
+    color:
+        rgba(100,80,100,0.55);
+
+    font-size: 25px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.candle-smoke.show {
+    animation:
+        candleSmokeRise
+        2.3s ease-out forwards;
+}
+
+
+@keyframes candleSmokeRise {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, 8px)
+            scale(.7);
+    }
+
+    20% {
+        opacity: .65;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-30%, -65px)
+            scale(1.4)
+            rotate(18deg);
+    }
+}
+
+
+/* =========================================
+   MİKROFON BUTONU
+========================================= */
+
+.candle-mic-button {
+    margin-top: 5px !important;
+
+    background:
+        rgba(118,47,80,0.10) !important;
+
+    color:
+        #71324f !important;
+
+    border:
+        1px solid
+        rgba(118,47,80,0.20) !important;
+
+    box-shadow: none !important;
+}
+
+
+.candle-mic-button.active {
+    background:
+        #762f50 !important;
+
+    color:
+        white !important;
+}
+
+
+/* =========================================
+   ÜFLEME GÜCÜ
+========================================= */
+
+.blow-meter {
+    width: min(250px, 70vw);
+    height: 6px;
+
+    margin: 15px auto 0;
+
+    overflow: hidden;
+
+    background:
+        rgba(118,47,80,0.10);
+
+    border-radius: 20px;
+}
+
+
+.blow-meter-fill {
+    width: 0%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d77b9f,
+            #8d365d
+        );
+
+    border-radius: inherit;
+
+    transition:
+        width .08s linear;
+}
+
+
+/* YARDIM */
+
+.candle-help {
+    margin-top: 10px;
+
+    color:
+        rgba(90,40,62,0.55);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+.candle-help span {
+    opacity: .75;
+}
+
+
+/* =========================================
+   SONUÇ
+========================================= */
+
+.candle-result {
+    margin-top: 16px;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+.candle-result.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.candle-result strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #71324f;
+
+    font-size: 20px;
+}
+
+
+.candle-result span {
+    color:
+        rgba(90,40,62,0.65);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* DEVAM BUTONU */
+
+.candle-continue {
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.candle-continue.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* TELEFON */
+
+@media(max-width:600px) {
+
+    .birthday-cake {
+        transform: scale(.88);
+
+        margin-top: 22px;
+        margin-bottom: 0;
+    }
+
+    .candle-result strong {
+        font-size: 18px;
+    }
+}
+
 </style>
 </head>
 
@@ -3372,9 +3908,145 @@ body.story-stage-4 {
            Bütün her şey aslında yüzünde bir tebessüm oluşturmak için. 
         </p>
 
-        <button onclick="next(10)">Devam etmek istiyor musun? →</button>
+       <button onclick="next(11)">Devam etmek istiyor musun? →</button>
 
     </div>
+</section>
+
+<!-- =========================================
+     11 - DOĞUM GÜNÜ / MUMLAR
+========================================= -->
+
+<section class="screen candle-screen" id="screen11">
+
+    <div class="container candle-container">
+
+        <div class="small">
+            doğum günüyse bir şey eksik...
+        </div>
+
+        <h2>
+            Mumları söndürmeden olmaz. 🎂
+        </h2>
+
+        <p id="candleInstruction">
+            Hazır olduğunda mikrofona doğru üfle.
+        </p>
+
+
+        <!-- PASTA -->
+
+        <div class="birthday-cake">
+
+            <!-- 2 MUMU -->
+            <div class="number-candle candle-two">
+
+                <div class="candle-flame" id="flame2"></div>
+
+                <div class="number-shape">
+                    2
+                </div>
+
+                <div class="candle-smoke" id="smoke2">
+                    ~
+                </div>
+
+            </div>
+
+
+            <!-- 5 MUMU -->
+            <div class="number-candle candle-five">
+
+                <div class="candle-flame" id="flame5"></div>
+
+                <div class="number-shape">
+                    5
+                </div>
+
+                <div class="candle-smoke" id="smoke5">
+                    ~
+                </div>
+
+            </div>
+
+
+            <!-- PASTA GÖVDESİ -->
+
+            <div class="cake-top"></div>
+
+            <div class="cake-body">
+                <span>♡</span>
+                <span>25</span>
+                <span>♡</span>
+            </div>
+
+            <div class="cake-plate"></div>
+
+        </div>
+
+
+        <!-- MİKROFON -->
+
+        <button
+            class="candle-mic-button"
+            id="candleMicButton"
+            onclick="startBlowDetection()"
+        >
+            🎙 MİKROFONU AÇ
+        </button>
+
+
+        <div
+            class="blow-meter"
+            id="blowMeter"
+        >
+            <div
+                class="blow-meter-fill"
+                id="blowMeterFill"
+            ></div>
+        </div>
+
+
+        <div
+            class="candle-help"
+            id="candleHelp"
+        >
+            Mikrofon izni verdikten sonra
+            mikrofona doğru üfle.
+            <br>
+            <span>
+                Çalışmazsa mumlara dokunabilirsin.
+            </span>
+        </div>
+
+
+        <!-- SONUÇ -->
+
+        <div
+            class="candle-result"
+            id="candleResult"
+        >
+            <strong>
+                25'e hoş geldin. ♡
+            </strong>
+
+            <span>
+                Umarım bu yaş sana beklediğin
+                güzel şeyleri getirir.
+            </span>
+        </div>
+
+
+        <button
+            class="candle-continue"
+            id="candleContinue"
+            onclick="next(10)"
+        >
+            ŞİMDİ BİR DİLEK TUT →
+        </button>
+
+    </div>
+
 </section>
 
 <!-- 10 - DİLEK EKRANI -->
