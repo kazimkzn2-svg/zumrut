@@ -5318,136 +5318,215 @@ body.story-stage-4 {
     }
 }
 
+/* =========================================
+   UÇUŞAN DEKORLAR
+========================================= */
+
+.flying-decoration {
+    position: fixed;
+    left: 0;
+    bottom: -70px;
+
+    z-index: 4;
+
+    pointer-events: none;
+    user-select: none;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 5px 10px rgba(113, 50, 79, .12)
+        );
+
+    animation:
+        flyingDecorationMove
+        var(--decor-duration)
+        linear forwards;
+}
+
+
+@keyframes flyingDecorationMove {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate3d(
+                var(--decor-start-x),
+                60px,
+                0
+            )
+            rotate(var(--decor-rotate-start))
+            scale(.7);
+    }
+
+    10% {
+        opacity: var(--decor-opacity);
+    }
+
+    45% {
+        transform:
+            translate3d(
+                calc(
+                    var(--decor-start-x) +
+                    var(--decor-sway)
+                ),
+                -48vh,
+                0
+            )
+            rotate(0deg)
+            scale(1);
+    }
+
+    85% {
+        opacity: var(--decor-opacity);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate3d(
+                calc(
+                    var(--decor-start-x) +
+                    var(--decor-sway-two)
+                ),
+                -115vh,
+                0
+            )
+            rotate(var(--decor-rotate-end))
+            scale(.8);
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-    <!-- =========================================
-     İLK GİRİŞ - KÜÇÜK KULLANIM KILAVUZU
-========================================= -->
-
-<div class="welcome-guide" id="welcomeGuide">
-
-    <div class="welcome-guide-card">
-
-        <button
-            class="welcome-guide-close"
-            onclick="closeWelcomeGuide()"
-            aria-label="Kapat"
-        >
-            ×
-        </button>
-
-        <div class="welcome-guide-small">
-            SİTEYE GİRMEDEN ÖNCE
-        </div>
-
-        <h2>
-            Küçük bir kullanım kılavuzu ♡
-        </h2>
-
-        <p class="welcome-guide-intro">
-            Burası sadece okuyup geçmen için hazırlanmadı.
-            Biraz dokunman, biraz kurcalaman ve bazı küçük
-            detayları kendin keşfetmen gerekiyor.
-        </p>
-
-
-        <div class="welcome-guide-items">
-
-            <div class="welcome-guide-item">
-                <div class="welcome-guide-icon">▧</div>
-
-                <div>
-                    <strong>Uçuşan fotoğraflara dokun.</strong>
-
-                    <p>
-                        İlk sayfada gördüğün fotoğrafların
-                        her birinin arkasında küçük bir anı var.
-                        Bazılarında ise göründüğünden biraz
-                        daha fazlası olabilir. :)
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="welcome-guide-item">
-                <div class="welcome-guide-icon">♫</div>
-
-                <div>
-                    <strong>Müziksiz gezmek zorunda değilsin.</strong>
-
-                    <p>
-                        Sağ alttaki müzik çalardan senin için
-                        seçtiğim 4 şarkı arasında geçiş yapabilir,
-                        müziği durdurabilir ve ses seviyesini
-                        istediğin gibi ayarlayabilirsin.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="welcome-guide-item">
-                <div class="welcome-guide-icon">✦</div>
-
-                <div>
-                    <strong>Sayfayı sadece izleme.</strong>
-
-                    <p>
-                        Butonlara, seçeneklere ve karşına çıkan
-                        küçük detaylara dokun. Arada senden bir
-                        şeyler isteyen yerler de olacak.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="welcome-guide-item">
-                <div class="welcome-guide-icon">♡</div>
-
-                <div>
-                    <strong>Ve en sonunda...</strong>
-
-                    <p>
-                        Gelecekteki kendine küçük bir not
-                        bırakabileceğin bir alan var.
-                        Yazdığın not bu tarayıcıda saklanacak
-                        ve sen silmediğin sürece bir sonraki
-                        gelişinde yine seni bekliyor olacak.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
-<div class="welcome-guide-item">
-    <div class="welcome-guide-icon">☾</div>
-
+  <div class="guide-item">
+    <span>📸</span>
     <div>
-        <strong>Bir dilek hakkın var.</strong>
-
+        <strong>Uçuşan fotoğrafları kurcala</strong>
         <p>
-            Bir yerde gökyüzü biraz kararabilir.
-            Oraya geldiğinde acele etme.
-            Bir dilek tut ve senden isteneni yap.
-            Ama tuttuğun dileği herkese anlatma. :)
+            İlk ekrandaki fotoğraflara dokunabilirsin.
+            Bazılarının arkasında küçük anılar, bazılarında ise
+            bulman gereken şeyler olabilir.
         </p>
     </div>
 </div>
 
-
-<div class="welcome-guide-item">
-    <div class="welcome-guide-icon">⌁</div>
-
+<div class="guide-item">
+    <span>🎵</span>
     <div>
-        <strong>Bu site seni biraz izliyor olabilir.</strong>
-
+        <strong>Müziği sen yönet</strong>
         <p>
-            Neleri kurcaladığın, kaç kere yanıldığın
-            ve burada ne kadar vakit geçirdiğin gibi
-            birkaç küçük detay yol boyunca kaybolmuyor.
-            Sonunda nedenini anlayacaksın. :D
+            Şarkıyı açıp kapatabilir, sesini değiştirebilir
+            ve hazırladığım şarkılar arasında istediğin gibi gezebilirsin.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>✦</span>
+    <div>
+        <strong>Biraz kurcalaman serbest</strong>
+        <p>
+            Her gördüğün şey sadece süs olmayabilir.
+            Dokunmak, tekrar denemek ve merak etmek bazen işe yarar. :)
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>🌠</span>
+    <div>
+        <strong>Bir dilek tut</strong>
+        <p>
+            Bir noktada senden küçük bir dilek isteyeceğim.
+            Ne tuttuğunu bana söylemek zorunda değilsin...
+            ama bana söyleyebilirsin. :D
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>🎂</span>
+    <div>
+        <strong>Mumlarını gerçekten üfle</strong>
+        <p>
+            Mikrofonuna izin verirsen doğum günü mumlarını
+            gerçekten üfleyerek söndürebilirsin.
+            Bilgisayarda da telefonda da çalışır.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>🎀</span>
+    <div>
+        <strong>Kendi bebeğini oluştur</strong>
+        <p>
+            Sana hazır bir hediye vermek biraz sıkıcı geldi.
+            O yüzden bazı özelliklerini ve aksesuarlarını
+            kendin seçip kendi Limited Edition bebeğini oluşturacaksın.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>🎁</span>
+    <div>
+        <strong>Hediyeni kendin seç</strong>
+        <p>
+            Yaptığın seçimlerin bir kısmı daha sonra karşına çıkacak.
+            Yani ne seçtiğine biraz dikkat et.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>🪞</span>
+    <div>
+        <strong>Aynayla konuş</strong>
+        <p>
+            İleride biraz fazla konuşan bir ayna göreceksin.
+            Bir kere dokunup geçmek zorunda değilsin.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>🧸</span>
+    <div>
+        <strong>Bugünkü bebek modelini seç</strong>
+        <p>
+            Sana en çok benzeyen modeli seç.
+            Seçimin daha sonra unutulmayacak.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>💌</span>
+    <div>
+        <strong>Geleceğe bir not bırak</strong>
+        <p>
+            Sitenin sonunda kendine bir not bırakabilirsin.
+            Sen silmediğin sürece aynı tarayıcıda burada kalır.
+        </p>
+    </div>
+</div>
+
+<div class="guide-item">
+    <span>📊</span>
+    <div>
+        <strong>En sonda raporun var</strong>
+        <p>
+            Ne kadar kurcaladığın, kaç şeyi keşfettiğin,
+            verdiğin cevaplar ve burada geçirdiğin süre gibi
+            birkaç küçük detay finalde seni bekliyor.
         </p>
     </div>
 </div>
@@ -5465,6 +5544,11 @@ body.story-stage-4 {
 
     </div>
 
+</div>
+
+<div class="guide-footer">
+    Her şeyi burada anlatmayacağım tabii.<br>
+    Bazı şeyleri kendin bulman gerekiyor. ♡
 </div>
 
     <!-- MÜZİK ÇALAR -->
@@ -10277,6 +10361,197 @@ function openBarbieBox() {
         }
     }, 650);
 }
+
+/* =========================================
+   UÇUŞAN KÜÇÜK DEKORLAR
+========================================= */
+
+const flyingDecorations = [
+
+    /* SIK */
+    { icon: "✦", weight: 7 },
+    { icon: "⋆", weight: 7 },
+    { icon: "♡", weight: 6 },
+
+    /* ORTA */
+    { icon: "🎀", weight: 4 },
+
+    /* DAHA NADİR */
+    { icon: "🧸", weight: 2 },
+
+    /* ÇOK NADİR */
+    { icon: "🪽", weight: 1 },
+    { icon: "👑", weight: 1 }
+
+];
+
+
+function getRandomDecoration() {
+
+    const pool = [];
+
+    flyingDecorations.forEach(item => {
+
+        for (
+            let i = 0;
+            i < item.weight;
+            i++
+        ) {
+
+            pool.push(item.icon);
+
+        }
+
+    });
+
+
+    return pool[
+        Math.floor(
+            Math.random() * pool.length
+        )
+    ];
+}
+
+
+
+function createFlyingDecoration() {
+
+    const decoration =
+        document.createElement("div");
+
+
+    decoration.className =
+        "flying-decoration";
+
+
+    decoration.textContent =
+        getRandomDecoration();
+
+
+    /* Ekranın rastgele bir yerinden başlasın */
+
+    const startX =
+        Math.random() * 95;
+
+
+    decoration.style.setProperty(
+        "--decor-start-x",
+        startX + "vw"
+    );
+
+
+    /* Sağa sola süzülme */
+
+    decoration.style.setProperty(
+        "--decor-sway",
+        (
+            Math.random() * 100 - 50
+        ) + "px"
+    );
+
+
+    decoration.style.setProperty(
+        "--decor-sway-two",
+        (
+            Math.random() * 160 - 80
+        ) + "px"
+    );
+
+
+    /* Dönüş */
+
+    decoration.style.setProperty(
+        "--decor-rotate-start",
+        (
+            Math.random() * 50 - 25
+        ) + "deg"
+    );
+
+
+    decoration.style.setProperty(
+        "--decor-rotate-end",
+        (
+            Math.random() * 120 - 60
+        ) + "deg"
+    );
+
+
+    /* Boyut */
+
+    decoration.style.fontSize =
+        (
+            15 +
+            Math.random() * 17
+        ) + "px";
+
+
+    /* Bazıları daha silik */
+
+    decoration.style.setProperty(
+        "--decor-opacity",
+        (
+            0.25 +
+            Math.random() * 0.35
+        )
+    );
+
+
+    /* Yavaş uçsunlar */
+
+    const duration =
+        13 +
+        Math.random() * 9;
+
+
+    decoration.style.setProperty(
+        "--decor-duration",
+        duration + "s"
+    );
+
+
+    document.body.appendChild(
+        decoration
+    );
+
+
+    /* Animasyon bitince temizle */
+
+    setTimeout(() => {
+
+        decoration.remove();
+
+    }, duration * 1000 + 500);
+}
+
+
+
+/* =========================================
+   DEKOR ÜRETİMİ
+========================================= */
+
+setInterval(() => {
+
+    createFlyingDecoration();
+
+}, 1400);
+
+
+/* Site açılır açılmaz birkaç tane olsun */
+
+setTimeout(
+    createFlyingDecoration,
+    300
+);
+
+setTimeout(
+    createFlyingDecoration,
+    850
+);
+
+setTimeout(
+    createFlyingDecoration,
+    1500
+);
 
 </script>
 
