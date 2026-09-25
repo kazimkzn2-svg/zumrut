@@ -4536,6 +4536,724 @@ body.story-stage-4 {
     }
 }
 
+/* =========================================
+   SCREEN 13 - ZÜMRÜT'ÜN AYNASI
+========================================= */
+
+#screen13 {
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #ffd9e9 0%,
+            #f1a8c6 55%,
+            #dd86aa 100%
+        );
+}
+
+.mirror-container {
+    position: relative;
+}
+
+.mirror-intro {
+    margin-bottom: 25px !important;
+}
+
+
+/* =========================================
+   KALP AYNA
+========================================= */
+
+.heart-mirror {
+    position: relative;
+
+    width: 310px;
+    height: 310px;
+
+    margin: 20px auto 10px;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    transition:
+        transform .25s ease;
+}
+
+.heart-mirror:active {
+    transform: scale(.96);
+}
+
+
+/* AYNA ÇERÇEVESİ */
+
+.mirror-glass {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 215px;
+    height: 215px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4fa,
+            #e9c7dc,
+            #fff8fc
+        );
+
+    border:
+        12px solid #d85d96;
+
+    border-radius:
+        48% 48% 48% 12%;
+
+    box-shadow:
+        0 20px 50px
+        rgba(104,35,67,.25),
+        inset 0 0 35px
+        rgba(255,255,255,.85);
+}
+
+
+/* Aynanın içindeki yazıyı düz tut */
+
+.mirror-text {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px;
+
+    transform:
+        rotate(-45deg);
+
+    color: #71324f;
+
+    text-align: center;
+}
+
+.mirror-text small {
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    opacity: .45;
+}
+
+.mirror-text strong {
+    display: block;
+
+    max-width: 180px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* CAM PARLAMASI */
+
+.mirror-shine {
+    position: absolute;
+
+    left: -40%;
+    top: -30%;
+
+    width: 45%;
+    height: 160%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.65),
+            transparent
+        );
+
+    transform:
+        rotate(-20deg);
+
+    animation:
+        mirrorShineMove
+        4s ease-in-out infinite;
+}
+
+@keyframes mirrorShineMove {
+
+    0%, 35% {
+        left: -50%;
+    }
+
+    70%, 100% {
+        left: 130%;
+    }
+}
+
+
+/* =========================================
+   PARILTILAR
+========================================= */
+
+.mirror-sparkle {
+    position: absolute;
+
+    color: white;
+
+    text-shadow:
+        0 0 12px
+        rgba(255,255,255,.8);
+
+    animation:
+        mirrorSparkle
+        1.8s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.sparkle-one {
+    left: 28px;
+    top: 55px;
+
+    font-size: 24px;
+}
+
+.sparkle-two {
+    right: 30px;
+    top: 80px;
+
+    font-size: 30px;
+
+    animation-delay: .4s;
+}
+
+.sparkle-three {
+    right: 50px;
+    bottom: 45px;
+
+    font-size: 18px;
+
+    animation-delay: .8s;
+}
+
+@keyframes mirrorSparkle {
+
+    0%,100% {
+        opacity: .3;
+        transform: scale(.7) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3) rotate(20deg);
+    }
+}
+
+
+/* DOKUNUNCA AYNA PARLASIN */
+
+.heart-mirror.talking {
+    animation:
+        mirrorTalk
+        .55s ease;
+}
+
+@keyframes mirrorTalk {
+
+    50% {
+        transform: scale(1.055);
+        filter:
+            drop-shadow(
+                0 0 25px
+                rgba(255,255,255,.75)
+            );
+    }
+}
+
+
+/* =========================================
+   İPUCU
+========================================= */
+
+.mirror-hint {
+    color:
+        rgba(100,40,67,.48);
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    transition:
+        opacity .5s ease;
+}
+
+
+/* =========================================
+   GİZLİ MESAJ
+========================================= */
+
+.mirror-secret {
+    display: none;
+
+    width: min(380px, 85vw);
+
+    margin: 18px auto 0;
+
+    padding: 17px;
+
+    background:
+        rgba(255,255,255,.38);
+
+    border:
+        1px solid
+        rgba(255,255,255,.7);
+
+    border-radius: 18px;
+
+    color: #71324f;
+
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+}
+
+.mirror-secret.show {
+    display: block;
+
+    animation:
+        mirrorSecretShow
+        .7s ease forwards;
+}
+
+@keyframes mirrorSecretShow {
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+.mirror-secret > div {
+    margin-bottom: 3px;
+
+    font-size: 19px;
+}
+
+.mirror-secret strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+.mirror-secret span {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    opacity: .65;
+}
+
+
+/* =========================================
+   DEVAM BUTONU
+========================================= */
+
+.mirror-continue {
+    opacity: 0;
+
+    transform:
+        translateY(10px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.mirror-continue.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* TELEFON */
+
+@media(max-width:600px) {
+
+    .heart-mirror {
+        width: 270px;
+        height: 270px;
+    }
+
+    .mirror-glass {
+        width: 185px;
+        height: 185px;
+    }
+
+    .mirror-text strong {
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   SCREEN 14 - BUGÜN HANGİ BARBIE'SİN?
+========================================= */
+
+#screen14 {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            #ffe0ee 0%,
+            #f4afd0 52%,
+            #df8bb2 100%
+        );
+
+    padding-top: 55px;
+    padding-bottom: 70px;
+}
+
+.barbie-container {
+    width: min(780px, 94vw);
+    margin: auto;
+}
+
+.barbie-intro {
+    margin-bottom: 28px !important;
+}
+
+
+/* =========================================
+   BARBIE KARTLARI
+========================================= */
+
+.barbie-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 13px;
+
+    width: min(600px, 100%);
+
+    margin: 25px auto;
+}
+
+
+.barbie-card {
+    width: 100% !important;
+    min-height: 145px;
+
+    margin: 0 !important;
+    padding: 20px 16px !important;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    background:
+        rgba(255,255,255,.30) !important;
+
+    border:
+        1px solid
+        rgba(255,255,255,.70) !important;
+
+    border-radius:
+        22px !important;
+
+    color:
+        #71324f !important;
+
+    box-shadow:
+        0 12px 30px
+        rgba(105,35,67,.08) !important;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        opacity .3s ease,
+        box-shadow .3s ease !important;
+}
+
+
+.barbie-card:hover {
+    transform:
+        translateY(-5px)
+        scale(1.02) !important;
+
+    background:
+        rgba(255,255,255,.52) !important;
+
+    box-shadow:
+        0 18px 40px
+        rgba(105,35,67,.14) !important;
+}
+
+
+.barbie-card-icon {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 32px;
+}
+
+
+.barbie-card strong {
+    font-size: 15px;
+
+    letter-spacing: .3px;
+}
+
+
+.barbie-card small {
+    max-width: 200px;
+
+    color:
+        rgba(90,38,62,.58);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* SEÇİLDİ */
+
+.barbie-card.selected {
+    background:
+        rgba(255,255,255,.82) !important;
+
+    border-color:
+        rgba(142,55,95,.28) !important;
+
+    transform:
+        translateY(-4px)
+        scale(1.035) !important;
+
+    box-shadow:
+        0 18px 45px
+        rgba(105,35,67,.17) !important;
+}
+
+
+/* Seçilmemiş kartlar */
+
+.barbie-cards.has-selection
+.barbie-card:not(.selected) {
+    opacity: .32;
+
+    transform:
+        scale(.96);
+}
+
+
+/* =========================================
+   SONUÇ
+========================================= */
+
+.barbie-result {
+    display: none;
+
+    width: min(500px, 92vw);
+
+    margin: 28px auto 0;
+
+    padding: 25px 22px;
+
+    background:
+        rgba(255,255,255,.38);
+
+    border:
+        1px solid
+        rgba(255,255,255,.72);
+
+    border-radius: 23px;
+
+    color: #71324f;
+
+    box-shadow:
+        0 18px 45px
+        rgba(105,35,67,.12);
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+}
+
+
+.barbie-result.show {
+    display: block;
+
+    animation:
+        barbieResultShow
+        .7s ease forwards;
+}
+
+
+@keyframes barbieResultShow {
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.barbie-result-icon {
+    margin-bottom: 5px;
+
+    font-size: 37px;
+}
+
+
+.barbie-result > small {
+    display: block;
+
+    color:
+        rgba(113,50,79,.48);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+
+.barbie-result h2 {
+    margin:
+        5px 0 9px !important;
+
+    color:
+        #71324f !important;
+
+    font-size:
+        25px !important;
+
+    text-shadow:
+        none !important;
+}
+
+
+.barbie-result p {
+    margin: 0 !important;
+
+    color:
+        rgba(90,38,62,.68) !important;
+
+    font-size:
+        11px !important;
+
+    line-height:
+        1.65 !important;
+}
+
+
+/* =========================================
+   DEVAM
+========================================= */
+
+.barbie-continue {
+    opacity: 0;
+
+    transform:
+        translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+
+.barbie-continue.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* TELEFON */
+
+@media(max-width:600px) {
+
+    #screen14 {
+        padding-top: 35px;
+    }
+
+    .barbie-cards {
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap: 8px;
+    }
+
+    .barbie-card {
+        min-height: 130px;
+
+        padding:
+            15px 8px !important;
+    }
+
+    .barbie-card-icon {
+        font-size: 27px;
+    }
+
+    .barbie-card strong {
+        font-size: 11px;
+    }
+
+    .barbie-card small {
+        font-size: 7px;
+    }
+}
+
 </style>
 </head>
 
@@ -5647,6 +6365,279 @@ body.story-stage-4 {
 
 </section>
 
+<!-- =========================================
+     13 - ZÜMRÜT'ÜN AYNASI
+========================================= -->
+
+<section class="screen mirror-screen" id="screen13">
+
+    <div class="container mirror-container">
+
+        <div class="small">
+            hediyenin yanında küçük bir şey daha...
+        </div>
+
+        <h2>
+            Zümrüt'ün aynası. 🪞
+        </h2>
+
+        <p class="mirror-intro">
+            Normal bir ayna değil.
+            Bazen gereğinden fazla konuşuyor.
+        </p>
+
+
+        <!-- AYNA -->
+
+        <div
+            class="heart-mirror"
+            id="heartMirror"
+            onclick="talkToMirror()"
+        >
+
+            <div class="mirror-sparkle sparkle-one">
+                ✦
+            </div>
+
+            <div class="mirror-sparkle sparkle-two">
+                ⋆
+            </div>
+
+            <div class="mirror-sparkle sparkle-three">
+                ✦
+            </div>
+
+
+            <div class="mirror-glass">
+
+                <div class="mirror-shine"></div>
+
+                <div class="mirror-text">
+
+                    <small>
+                        BUGÜN AYNANIN SÖYLEDİĞİ:
+                    </small>
+
+                    <strong id="mirrorMessage">
+                        Öğrenmek için aynaya dokun.
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="mirror-hint" id="mirrorHint">
+            aynaya dokun ♡
+        </div>
+
+
+        <!-- 5. DOKUNUŞTA GİZLİ MESAJ -->
+
+        <div
+            class="mirror-secret"
+            id="mirrorSecret"
+        >
+
+            <div>✦</div>
+
+            <strong>
+                Yeter kızım, güzelsin işte.
+            </strong>
+
+            <span>
+                Kaç kere daha söyleyelim? :D
+            </span>
+
+        </div>
+
+
+        <button
+            class="mirror-continue"
+            id="mirrorContinue"
+            onclick="next(14)"
+        >
+            TAMAM TAMAM, İKNA OLDUM →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     14 - BUGÜN HANGİ OYUNCAK BEBEKİN?
+========================================= -->
+
+<section class="screen barbie-screen" id="screen14">
+
+    <div class="container barbie-container">
+
+        <div class="small">
+            son bir kişilik testi...
+        </div>
+
+        <h2>
+            Bugün hangi oyuncak bebekin? 🎀
+        </h2>
+
+        <p class="barbie-intro">
+            Çok düşünme. İlk içinden geleni seç.
+            Sonuçların bilimsel bir dayanağı kesinlikle yok. :D
+        </p>
+
+
+        <div class="barbie-cards">
+
+            <!-- CEO -->
+
+            <button
+                class="barbie-card"
+                onclick="chooseBarbie(
+                    'CEO Bebek',
+                    '💼',
+                    'Şirketin ne yaptığı belli değil ama yönetim tamamen Zümrüt\\'te.',
+                    this
+                )"
+            >
+
+                <span class="barbie-card-icon">
+                    💼
+                </span>
+
+                <strong>
+                    CEO Bebek
+                </strong>
+
+                <small>
+                    Her şeyi kontrol altında sanıyor.
+                </small>
+
+            </button>
+
+
+            <!-- DRAMA QUEEN -->
+
+            <button
+                class="barbie-card"
+                onclick="chooseBarbie(
+                    'Drama Queen Bebek',
+                    '💅',
+                    'Bunu seçmene şaşırmış gibi davranmam gerekiyor mu? :D',
+                    this
+                )"
+            >
+
+                <span class="barbie-card-icon">
+                    💅
+                </span>
+
+                <strong>
+                    Drama Queen Bebek
+                </strong>
+
+                <small>
+                    Sorun yokken bile biraz drama çıkabilir.
+                </small>
+
+            </button>
+
+
+            <!-- BÜYÜMÜŞ -->
+
+            <button
+                class="barbie-card"
+                onclick="chooseBarbie(
+                    'Büyümüş Bebek',
+                    '🎀',
+                    'Kimlikte büyümüş olabilir. Oyuncak görünce verdiğin tepkiler konusunda yorum yapmayacağım. :D',
+                    this
+                )"
+            >
+
+                <span class="barbie-card-icon">
+                    🎀
+                </span>
+
+                <strong>
+                    Büyümüş Bebek
+                </strong>
+
+                <small>
+                    25 yaşında ama oyuncak reyonuna hâlâ bakıyor.
+                </small>
+
+            </button>
+
+
+            <!-- UYKUSUZ -->
+
+            <button
+                class="barbie-card"
+                onclick="chooseBarbie(
+                    'Uykusuz Bebek',
+                    '😴',
+                    'Bu modelin çalışması için kahve ve yaklaşık 14 saat uyku öneriliyor.',
+                    this
+                )"
+            >
+
+                <span class="barbie-card-icon">
+                    😴
+                </span>
+
+                <strong>
+                    Uykusuz Bebek
+                </strong>
+
+                <small>
+                    Hayatta ama ne kadar hayatta olduğu tartışılır.
+                </small>
+
+            </button>
+
+        </div>
+
+
+        <!-- SEÇİM SONUCU -->
+
+        <div
+            class="barbie-result"
+            id="barbieResult"
+        >
+
+            <div
+                class="barbie-result-icon"
+                id="barbieResultIcon"
+            >
+                🎀
+            </div>
+
+            <small>
+                BUGÜNKÜ MODEL
+            </small>
+
+            <h2 id="barbieResultTitle">
+                Bebek
+            </h2>
+
+            <p id="barbieResultText"></p>
+
+        </div>
+
+
+        <button
+            class="barbie-continue"
+            id="barbieContinue"
+            onclick="next(9)"
+        >
+            BENİM BEBEĞİM BUYMUŞ →
+        </button>
+
+    </div>
+
+</section>
 
 <!-- 9 - ZÜMRÜT İÇİN -->
 <section class="screen" id="screen9">
@@ -5762,7 +6753,19 @@ body.story-stage-4 {
                 <strong id="statWish">Henüz değil</strong>
             </div>
         </div>
+<div class="visit-stat visit-stat-wide">
 
+    <span>🎀</span>
+
+    <div>
+        <small>Bugünkü karakter</small>
+
+        <strong id="statBarbie">
+            Henüz seçilmedi
+        </strong>
+    </div>
+
+</div>
     </div>
 
     <p class="visit-report-comment" id="visitReportComment">
@@ -7706,7 +8709,9 @@ const visitStats = {
     wrongAnswers: 0,
     secretsFound: new Set(),
     startedAt: Date.now(),
-    wishMade: false
+    wishMade: false,
+    wishMade: false,
+barbieChoice: null
 };
 
 let wishMade = false;
@@ -7943,6 +8948,30 @@ function showVisitReport() {
         visitStats.wishMade
             ? "Tutuldu ✓"
             : "Tutulmadı";
+
+            const barbieStat =
+    document.getElementById(
+        "statBarbie"
+    );
+
+if (barbieStat) {
+
+    if (visitStats.barbieChoice) {
+
+        barbieStat.textContent =
+            visitStats.barbieChoice.icon +
+            " " +
+            visitStats.barbieChoice.name;
+
+    }
+
+    else {
+
+        barbieStat.textContent =
+            "Seçilmedi";
+
+    }
+}
 
 
     /* SONUCA GÖRE KÜÇÜK YORUM */
@@ -8842,7 +9871,7 @@ function showDollContinueButton() {
     button.onclick =
         function() {
 
-            next(9);
+            next(13);
 
         };
 
@@ -8891,6 +9920,390 @@ function showDollContinueButton() {
 
         }, 200);
     }
+}
+
+/* =========================================
+   ZÜMRÜT'ÜN AYNASI
+========================================= */
+
+let mirrorTapCount = 0;
+let mirrorSecretFound = false;
+
+const mirrorMessages = [
+
+    "25 olmuş ama hâlâ oyuncak görünce mutlu oluyor. :D",
+
+    "Bugünkü mutluluk seviyesi: tehlikeli derecede yüksek.",
+
+    "Bu aynaya göre gayet güzelsin. Benim fikrimi zaten sormadın.",
+
+    "Bugün ana karakter sensin. Gerçi bunu sana söylemeye gerek yoktu.",
+
+    "Ayna bir süre düşündü... Kusur bulamadı. Sistem hatası olabilir.",
+
+    "Bugünkü güzellik seviyesi: gereksiz yüksek.",
+
+    "25.0 sürümü başarıyla yüklendi. Görünüşe göre hâlâ aynı Zümrüt.",
+
+    "Ayna sonuçları açıkladı: Bugün de güzel çıkmışsın. Şaşırtmadı."
+];
+
+
+function talkToMirror() {
+
+    const mirror =
+        document.getElementById("heartMirror");
+
+    const message =
+        document.getElementById("mirrorMessage");
+
+    const hint =
+        document.getElementById("mirrorHint");
+
+    if (!mirror || !message) {
+        return;
+    }
+
+
+    /* Gizli mesaj zaten bulunduysa
+       normal mesaj göstermeye devam et */
+
+    if (mirrorSecretFound) {
+
+        showRandomMirrorMessage();
+
+        mirror.classList.remove("talking");
+
+        void mirror.offsetWidth;
+
+        mirror.classList.add("talking");
+
+        return;
+    }
+
+
+    mirrorTapCount++;
+
+
+    /* Aynayı parlat */
+
+    mirror.classList.remove("talking");
+
+    void mirror.offsetWidth;
+
+    mirror.classList.add("talking");
+
+
+    /*
+       İlk 4 dokunuş:
+       rastgele mesaj
+    */
+
+    if (mirrorTapCount < 5) {
+
+        showRandomMirrorMessage();
+
+
+        if (hint) {
+
+            if (mirrorTapCount === 1) {
+                hint.textContent =
+                    "bir daha dokunsan ne olacak acaba...";
+            }
+
+            else if (mirrorTapCount === 2) {
+                hint.textContent =
+                    "ayna hâlâ söyleyecek bir şeyler biliyor.";
+            }
+
+            else if (mirrorTapCount === 3) {
+                hint.textContent =
+                    "hâlâ kurcalıyorsun... :D";
+            }
+
+            else if (mirrorTapCount === 4) {
+                hint.textContent =
+                    "tamam, son bir kere daha dokun.";
+            }
+        }
+
+        return;
+    }
+
+
+    /* =====================================
+       5. DOKUNUŞ - GİZLİ MESAJ
+    ===================================== */
+
+    mirrorSecretFound = true;
+
+
+    message.textContent =
+        "Tamam. Ayna pes etti. :D";
+
+
+    if (hint) {
+        hint.style.opacity = "0";
+    }
+
+
+    const secret =
+        document.getElementById(
+            "mirrorSecret"
+        );
+
+
+    const continueButton =
+        document.getElementById(
+            "mirrorContinue"
+        );
+
+
+    setTimeout(() => {
+
+        if (secret) {
+            secret.classList.add("show");
+        }
+
+    }, 350);
+
+
+    /*
+       Final raporuna gizli keşif ekle
+    */
+
+    if (
+        typeof visitStats !== "undefined"
+    ) {
+
+        visitStats.secretsFound.add(
+            "mirror"
+        );
+    }
+
+
+    /*
+       Biraz sonra devam butonunu aç
+    */
+
+    setTimeout(() => {
+
+        if (continueButton) {
+
+            continueButton.classList.add(
+                "show"
+            );
+        }
+
+    }, 1000);
+}
+
+
+
+/* =========================================
+   RASTGELE AYNA MESAJI
+========================================= */
+
+let lastMirrorMessage = -1;
+
+
+function showRandomMirrorMessage() {
+
+    const message =
+        document.getElementById(
+            "mirrorMessage"
+        );
+
+    if (!message) return;
+
+
+    let randomIndex;
+
+
+    /*
+       Aynı cümle arka arkaya gelmesin
+    */
+
+    do {
+
+        randomIndex =
+            Math.floor(
+                Math.random() *
+                mirrorMessages.length
+            );
+
+    }
+
+    while (
+        randomIndex === lastMirrorMessage &&
+        mirrorMessages.length > 1
+    );
+
+
+    lastMirrorMessage =
+        randomIndex;
+
+
+    /* Yazıyı hafif kaybedip değiştir */
+
+    message.style.opacity = "0";
+
+    message.style.transform =
+        "translateY(5px)";
+
+
+    setTimeout(() => {
+
+        message.textContent =
+            mirrorMessages[randomIndex];
+
+        message.style.transition =
+            "opacity .35s ease, transform .35s ease";
+
+        message.style.opacity = "1";
+
+        message.style.transform =
+            "translateY(0)";
+
+    }, 180);
+}
+
+/* =========================================
+   BUGÜN HANGİ BARBIE'SİN?
+========================================= */
+
+let barbieAlreadyChosen = false;
+
+
+function chooseBarbie(
+    name,
+    icon,
+    comment,
+    button
+) {
+
+    if (barbieAlreadyChosen) {
+        return;
+    }
+
+    barbieAlreadyChosen = true;
+
+
+    const cards =
+        document.querySelector(
+            ".barbie-cards"
+        );
+
+    const allCards =
+        document.querySelectorAll(
+            ".barbie-card"
+        );
+
+    const result =
+        document.getElementById(
+            "barbieResult"
+        );
+
+    const resultIcon =
+        document.getElementById(
+            "barbieResultIcon"
+        );
+
+    const resultTitle =
+        document.getElementById(
+            "barbieResultTitle"
+        );
+
+    const resultText =
+        document.getElementById(
+            "barbieResultText"
+        );
+
+    const continueButton =
+        document.getElementById(
+            "barbieContinue"
+        );
+
+
+    /* Seçilen kart */
+
+    if (cards) {
+        cards.classList.add(
+            "has-selection"
+        );
+    }
+
+    button.classList.add(
+        "selected"
+    );
+
+
+    /* Diğer kartları kilitle */
+
+    allCards.forEach(card => {
+
+        card.style.pointerEvents =
+            "none";
+
+    });
+
+
+    /* Sonucu yaz */
+
+    if (resultIcon) {
+        resultIcon.textContent =
+            icon;
+    }
+
+    if (resultTitle) {
+        resultTitle.textContent =
+            name;
+    }
+
+    if (resultText) {
+        resultText.textContent =
+            comment;
+    }
+
+
+    /* Final raporuna kaydet */
+
+    if (
+        typeof visitStats !== "undefined"
+    ) {
+
+        visitStats.barbieChoice = {
+            name: name,
+            icon: icon
+        };
+    }
+
+
+    /* Sonucu göster */
+
+    setTimeout(() => {
+
+        if (result) {
+            result.classList.add(
+                "show"
+            );
+        }
+
+    }, 350);
+
+
+    /* Devam butonu */
+
+    setTimeout(() => {
+
+        if (continueButton) {
+
+            continueButton.classList.add(
+                "show"
+            );
+        }
+
+    }, 900);
 }
 
 </script>
