@@ -561,7 +561,6 @@ background: rgba(255,255,255,0.20);
         0 8px 25px rgba(100, 30, 65, 0.20);
 
     pointer-events: auto !important;
-    cursor: pointer;
     touch-action: manipulation;
 
     z-index: 20;
@@ -2597,14 +2596,24 @@ function createFlyingPhoto() {
 photo.src = selectedPhoto.src;
 photo.dataset.memory = selectedPhoto.memory;
 
-photo.style.cursor = "pointer";
-
 photo.addEventListener("pointerdown", function (e) {
+
+    const activeScreen =
+        document.querySelector(".screen.active");
+
+    /* Anılar sadece ilk ekranda açılabilir */
+    if (!activeScreen || activeScreen.id !== "screen1") {
+        return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
-    openPhotoMemory(selectedPhoto.src, selectedPhoto.memory);
-});
 
+    openPhotoMemory(
+        selectedPhoto.src,
+        selectedPhoto.memory
+    );
+});
     /* Ekranın rastgele bir yerinden çıksın */
 
     photo.style.left =
