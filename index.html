@@ -4214,6 +4214,328 @@ body.story-stage-4 {
     opacity: 1;
 }
 
+/* =========================================
+   ZÜMRÜT KUTUSU - ARKA YÜZ
+========================================= */
+
+.doll-package {
+    transform-style: preserve-3d;
+    perspective: 1200px;
+}
+
+
+/* Normalde arka yüz görünmez */
+
+.doll-package-back {
+    display: none;
+
+    min-height: 310px;
+
+    padding: 25px 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff2f8,
+            #ffd5e7
+        );
+
+    border:
+        2px solid rgba(255,255,255,.9);
+
+    border-radius: 22px;
+
+    color: #71324f;
+
+    text-align: center;
+}
+
+
+/* Dönüş sırasında */
+
+.doll-package.flipping {
+    animation:
+        dollBoxFlip
+        1.25s
+        cubic-bezier(.16,.84,.32,1)
+        forwards;
+}
+
+
+@keyframes dollBoxFlip {
+
+    0% {
+        transform:
+            rotateY(0deg)
+            scale(1);
+    }
+
+    45% {
+        transform:
+            rotateY(90deg)
+            scale(.92);
+    }
+
+    55% {
+        transform:
+            rotateY(90deg)
+            scale(.92);
+    }
+
+    100% {
+        transform:
+            rotateY(0deg)
+            scale(1);
+    }
+}
+
+
+/* ARKA TARAF BAŞLIKLARI */
+
+.doll-back-label {
+    font-size: 36px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+.doll-back-edition {
+    margin-top: 2px;
+
+    font-size: 9px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    opacity: .65;
+}
+
+.doll-back-version {
+    margin-top: 6px;
+
+    font-size: 9px;
+
+    opacity: .45;
+}
+
+.doll-back-divider {
+    width: 80%;
+
+    height: 1px;
+
+    margin: 18px auto;
+
+    background:
+        rgba(113,50,79,.13);
+}
+
+.doll-back-title {
+    margin-bottom: 12px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    opacity: .55;
+}
+
+
+/* SEÇTİĞİ ŞEYLER */
+
+.doll-back-choices {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 8px;
+}
+
+.doll-back-choices > div {
+    padding: 12px 5px;
+
+    background:
+        rgba(255,255,255,.50);
+
+    border-radius: 13px;
+}
+
+.doll-back-choices span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 22px;
+}
+
+.doll-back-choices small {
+    display: block;
+
+    font-size: 7px;
+
+    opacity: .5;
+}
+
+.doll-back-choices strong {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 9px;
+}
+
+
+/* ÖZELLİK ÇUBUKLARI */
+
+.doll-specs {
+    display: grid;
+
+    gap: 10px;
+
+    text-align: left;
+}
+
+.doll-specs > div {
+    display: grid;
+
+    grid-template-columns:
+        135px 1fr 105px;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.doll-specs span {
+    font-size: 9px;
+}
+
+.doll-specs strong {
+    font-size: 8px;
+
+    text-align: right;
+}
+
+.doll-spec-bar {
+    height: 5px;
+
+    overflow: hidden;
+
+    background:
+        rgba(113,50,79,.10);
+
+    border-radius: 20px;
+}
+
+.doll-spec-bar i {
+    display: block;
+
+    height: 100%;
+
+    background: #b64e7d;
+
+    border-radius: inherit;
+}
+
+.doll-spec-bar.error i {
+    animation:
+        dollErrorBar
+        .7s ease-in-out infinite alternate;
+}
+
+@keyframes dollErrorBar {
+
+    from {
+        opacity: .35;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* UYARI */
+
+.doll-warning {
+    margin-top: 20px;
+
+    padding: 13px;
+
+    background:
+        rgba(255,255,255,.40);
+
+    border:
+        1px dashed
+        rgba(113,50,79,.22);
+
+    border-radius: 13px;
+}
+
+.doll-warning strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.doll-warning span {
+    display: block;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    opacity: .65;
+}
+
+
+.doll-not-sold {
+    margin-top: 15px;
+
+    font-size: 9px;
+
+    opacity: .65;
+}
+
+.doll-not-sold strong {
+    color: #9b3f69;
+}
+
+
+/* TELEFON */
+
+@media(max-width:600px) {
+
+    .doll-package-back {
+        padding: 20px 12px;
+    }
+
+    .doll-back-choices {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .doll-specs > div {
+        grid-template-columns:
+            95px 1fr 75px;
+
+        gap: 6px;
+    }
+
+    .doll-specs span {
+        font-size: 7px;
+    }
+
+    .doll-specs strong {
+        font-size: 7px;
+    }
+}
+
 </style>
 </head>
 
@@ -4857,7 +5179,138 @@ body.story-stage-4 {
                     </div>
 
                 </div>
+<!-- KUTUNUN ARKA YÜZÜ -->
 
+<div class="doll-package-back" id="dollPackageBack">
+
+    <div class="doll-back-label">
+        ZÜMRÜT™
+    </div>
+
+    <div class="doll-back-edition">
+        SPECIAL BIRTHDAY EDITION
+    </div>
+
+    <div class="doll-back-version">
+        MODEL 25.0 • 1 OF 1
+    </div>
+
+    <div class="doll-back-divider"></div>
+
+    <div class="doll-back-title">
+        KUTU İÇERİĞİ
+    </div>
+
+    <div class="doll-back-choices">
+
+        <div>
+            <span id="backScentIcon">?</span>
+            <small>Koku</small>
+            <strong id="backScent">—</strong>
+        </div>
+
+        <div>
+            <span id="backDrinkIcon">?</span>
+            <small>İçecek</small>
+            <strong id="backDrink">—</strong>
+        </div>
+
+        <div>
+            <span id="backAccessoryIcon">?</span>
+            <small>Aksesuar</small>
+            <strong id="backAccessory">—</strong>
+        </div>
+
+        <div>
+            <span id="backPowerIcon">?</span>
+            <small>Özel yetenek</small>
+            <strong id="backPower">—</strong>
+        </div>
+
+    </div>
+
+
+    <div class="doll-back-divider"></div>
+
+
+    <div class="doll-specs">
+
+        <div>
+            <span>Güzellik enerjisi</span>
+
+            <div class="doll-spec-bar">
+                <i style="width:100%"></i>
+            </div>
+
+            <strong>100%</strong>
+        </div>
+
+
+        <div>
+            <span>Trip kapasitesi</span>
+
+            <div class="doll-spec-bar">
+                <i style="width:92%"></i>
+            </div>
+
+            <strong>Yüksek</strong>
+        </div>
+
+
+        <div>
+            <span>Tatlılık</span>
+
+            <div class="doll-spec-bar error">
+                <i style="width:100%"></i>
+            </div>
+
+            <strong>Ölçülemedi</strong>
+        </div>
+
+
+        <div>
+            <span>Oyuncak görünce mutluluk</span>
+
+            <div class="doll-spec-bar">
+                <i style="width:100%"></i>
+            </div>
+
+            <strong>100%</strong>
+        </div>
+
+
+        <div>
+            <span>Kazım'a karşı sabır</span>
+
+            <div class="doll-spec-bar">
+                <i style="width:61%"></i>
+            </div>
+
+            <strong>Modele göre değişebilir</strong>
+        </div>
+
+    </div>
+
+
+    <div class="doll-warning">
+
+        <strong>⚠ KULLANIM UYARISI</strong>
+
+        <span>
+            Aç bırakılması, uykusuz bırakılması
+            veya gereğinden fazla sinirlendirilmesi
+            tavsiye edilmez.
+        </span>
+
+    </div>
+
+
+    <div class="doll-not-sold">
+        ♡ Kutudan ayrı satılmayan parça:
+        <strong>Kazım</strong>
+    </div>
+
+</div>
 
                 <!-- SEÇİLEN AKSESUARLAR -->
 
@@ -8194,6 +8647,251 @@ function finishDollCreation() {
     }, 850);
 }
 
+/* =========================================
+   ZÜMRÜT KUTUSUNU ÇEVİR
+========================================= */
+
+let dollPackageOpened = false;
+
+
+function flipDollPackage() {
+
+    if (dollPackageOpened) {
+        return;
+    }
+
+    dollPackageOpened = true;
+
+
+    const packageElement =
+        document.querySelector(
+            "#screen12 .doll-package"
+        );
+
+    const packageContent =
+        document.querySelector(
+            "#screen12 .doll-package-content"
+        );
+
+    const packageTop =
+        document.querySelector(
+            "#screen12 .doll-package-top"
+        );
+
+    const packageBack =
+        document.getElementById(
+            "dollPackageBack"
+        );
+
+    const complete =
+        document.getElementById(
+            "dollComplete"
+        );
+
+
+    /* Seçtiği şeyleri arka tarafa yaz */
+
+    fillDollBackChoice(
+        "Scent",
+        dollChoices.scent
+    );
+
+    fillDollBackChoice(
+        "Drink",
+        dollChoices.drink
+    );
+
+    fillDollBackChoice(
+        "Accessory",
+        dollChoices.accessory
+    );
+
+    fillDollBackChoice(
+        "Power",
+        dollChoices.power
+    );
+
+
+    if (!packageElement) return;
+
+
+    /* Sürekli parlama animasyonunu durdur */
+
+    packageElement.classList.remove(
+        "completed"
+    );
+
+    packageElement.classList.add(
+        "flipping"
+    );
+
+
+    /*
+       Kutunun tam yan döndüğü anda
+       ön yüzü arka yüzle değiştir.
+    */
+
+    setTimeout(() => {
+
+        if (packageContent) {
+            packageContent.style.display =
+                "none";
+        }
+
+        if (packageTop) {
+            packageTop.style.display =
+                "none";
+        }
+
+        if (packageBack) {
+            packageBack.style.display =
+                "block";
+        }
+
+        if (complete) {
+            complete.style.display =
+                "none";
+        }
+
+    }, 600);
+
+
+    /*
+       Dönüş bitince aşağıda devam butonu oluştur.
+    */
+
+    setTimeout(() => {
+
+        packageElement.classList.remove(
+            "flipping"
+        );
+
+        showDollContinueButton();
+
+    }, 1300);
+}
+
+
+
+function fillDollBackChoice(
+    type,
+    choice
+) {
+
+    if (!choice) return;
+
+
+    const icon =
+        document.getElementById(
+            "back" + type + "Icon"
+        );
+
+    const text =
+        document.getElementById(
+            "back" + type
+        );
+
+
+    if (icon) {
+        icon.textContent =
+            choice.icon;
+    }
+
+    if (text) {
+        text.textContent =
+            choice.name;
+    }
+}
+
+
+
+/* =========================================
+   KUTU AÇILDIKTAN SONRA DEVAM
+========================================= */
+
+function showDollContinueButton() {
+
+    if (
+        document.getElementById(
+            "dollAfterButton"
+        )
+    ) {
+        return;
+    }
+
+
+    const button =
+        document.createElement(
+            "button"
+        );
+
+    button.id =
+        "dollAfterButton";
+
+    button.textContent =
+        "DEVAM ET →";
+
+
+    /*
+       Şimdilik mevcut hikâyeye dönüyor.
+       Birazdan Barbie aynasını araya
+       eklediğimizde buradaki 9'u
+       yeni ekran numarasıyla değiştireceğiz.
+    */
+
+    button.onclick =
+        function() {
+
+            next(9);
+
+        };
+
+
+    const container =
+        document.querySelector(
+            "#screen12 .doll-container"
+        );
+
+
+    if (container) {
+
+        container.appendChild(
+            button
+        );
+
+
+        button.animate(
+            [
+                {
+                    opacity: 0,
+                    transform:
+                        "translateY(12px)"
+                },
+
+                {
+                    opacity: 1,
+                    transform:
+                        "translateY(0)"
+                }
+            ],
+
+            {
+                duration: 700,
+                fill: "forwards"
+            }
+        );
+
+
+        setTimeout(() => {
+
+            button.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 200);
+    }
+}
 
 </script>
 
