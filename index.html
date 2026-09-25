@@ -3783,6 +3783,7 @@ body.story-stage-4 {
     font-size: 8px;
     letter-spacing: 1px;
 }
+}
 
 .doll-preview-placeholder {
     display: flex;
@@ -6939,115 +6940,6 @@ body.story-stage-4 {
         transform .8s ease;
 }
 
-
-/* =========================================
-   SCREEN 12 + SCREEN 16 SON DÜZELTMELER
-========================================= */
-
-#screen12 .doll-character {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-#screen12 .doll-preview {
-    position: relative;
-    overflow: hidden;
-}
-
-#screen12 .doll-accessory-slots {
-    z-index: 60;
-}
-
-#screen16 {
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-#screen16 .gift-reveal-result.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#screen16 .gift-reveal-result strong,
-#screen16 .gift-reveal-result span {
-    display: block;
-    color: #71324f;
-}
-
-#screen16 .gift-reveal-result strong {
-    font-size: 20px;
-}
-
-#screen16 .gift-reveal-result span {
-    margin-top: 7px;
-    font-size: 11px;
-    opacity: .65;
-    letter-spacing: 1px;
-}
-
-.zumrut-gift-box.opened .zumrut-gift-lid {
-    transform: translateX(-50%) translateY(-85px) rotate(-10deg);
-    opacity: .25;
-}
-
-.zumrut-gift-box.opened .gift-tap-text {
-    opacity: 0;
-}
-
-#screen16 .gift-character-holder .doll-character {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    margin: 0;
-    transform: translateX(-50%) scale(.65);
-    transform-origin: bottom center;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-#screen16 .gift-character-holder .doll-character.gift-visible {
-    visibility: visible;
-    animation: giftMiniZumrutReveal .9s cubic-bezier(.16,.84,.32,1) forwards;
-}
-
-@keyframes giftMiniZumrutReveal {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(35px) scale(.35);
-        filter: blur(8px);
-    }
-    70% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-7px) scale(.70);
-        filter: blur(0);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0) scale(.65);
-        filter: blur(0);
-    }
-}
-
-@media(max-width:600px) {
-    .zumrut-gift-box {
-        width: 270px;
-        height: 290px;
-    }
-
-    .zumrut-gift-body {
-        width: 230px;
-        height: 180px;
-    }
-
-    .zumrut-gift-lid {
-        width: 255px;
-    }
-}
-
-
 </style>
 </head>
 
@@ -8271,7 +8163,7 @@ body.story-stage-4 {
             </div>
 
             <button
-    onclick="goToZumrutGift()"
+    onclick="flipDollPackage()"
     id="flipDollButton"
 >
     HEDİYEMİ AÇ →
@@ -8281,55 +8173,6 @@ body.story-stage-4 {
 
     </div>
 
-</section>
-
-
-<!-- =========================================
-     16 - ZÜMRÜT HEDİYE KUTUSU
-========================================= -->
-<section class="screen" id="screen16">
-    <div class="container gift-reveal-container">
-
-        <div class="small">hazır mısın?</div>
-
-        <h2>Hediyen burada. 🎀</h2>
-
-        <p class="gift-reveal-description">
-            Kutunun üstüne dokun.
-        </p>
-
-        <div class="zumrut-gift-box" id="zumrutGiftBox" onclick="openZumrutGift()">
-
-            <div class="zumrut-gift-body">
-                <div class="gift-box-ribbon"></div>
-
-                <div class="gift-character-holder" id="giftCharacterHolder"></div>
-
-                <strong>ZÜMRÜT</strong>
-                <small>SPECIAL BIRTHDAY EDITION • 1/1</small>
-            </div>
-
-            <div class="zumrut-gift-lid">
-                <div class="gift-lid-line"></div>
-                <div class="gift-bow">🎀</div>
-            </div>
-
-            <div class="gift-tap-text" id="giftTapText">
-                KUTUYU AÇMAK İÇİN DOKUN
-            </div>
-
-        </div>
-
-        <div class="gift-reveal-result" id="giftRevealResult">
-            <strong>İşte bu da senin hediyen. ♡</strong>
-            <span>Limited Edition Zümrüt — 1/1</span>
-
-            <button onclick="next(13)">
-                DEVAM ET →
-            </button>
-        </div>
-
-    </div>
 </section>
 
 <!-- =========================================
@@ -12846,6 +12689,9 @@ function updateMiniZumrut(type, value) {
         headAccessory.classList.add(
             "accessory-pop"
         );
+        setTimeout(() => {
+    createMiniZumrut();
+}, 250);
     }
 }
 
@@ -13007,59 +12853,6 @@ function createMiniZumrut() {
     }, 2700);
 }
 
-
-
-
-/* =========================================
-   SCREEN 16 - HEDİYE KUTUSU
-========================================= */
-
-let zumrutGiftOpened = false;
-
-function goToZumrutGift() {
-    const character = document.getElementById("dollCharacter");
-
-    if (character) {
-        character.classList.remove("reveal", "gift-visible");
-        character.classList.add("doll-character-hidden");
-    }
-
-    next(16);
-
-    setTimeout(() => {
-        const holder = document.getElementById("giftCharacterHolder");
-
-        if (holder && character) {
-            holder.appendChild(character);
-        }
-    }, 750);
-}
-
-function openZumrutGift() {
-    if (zumrutGiftOpened) return;
-    zumrutGiftOpened = true;
-
-    const box = document.getElementById("zumrutGiftBox");
-    const character = document.getElementById("dollCharacter");
-    const result = document.getElementById("giftRevealResult");
-
-    if (box) {
-        box.classList.add("opened");
-    }
-
-    setTimeout(() => {
-        if (character) {
-            character.classList.remove("doll-character-hidden", "reveal");
-            character.classList.add("gift-visible");
-        }
-    }, 450);
-
-    setTimeout(() => {
-        if (result) {
-            result.classList.add("show");
-        }
-    }, 1050);
-}
 
 
 </script>
