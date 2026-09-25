@@ -3721,30 +3721,7 @@ body.story-stage-4 {
             rgba(255,255,255,.65),
             rgba(255,199,222,.35)
         );
-        /* BEBEK ÖN İZLEME YERLEŞİM DÜZELTMESİ */
-
-.doll-preview {
-    position: relative;
-    min-height: 300px;
-    padding: 20px 175px 20px 20px;
-}
-
-/* Ortadaki Zümrüt oluşturma alanı */
-
-.doll-creation-screen {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    bottom: 20px;
-    right: 175px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-}
+       
 
 .doll-creation-heart {
     font-size: 48px;
@@ -4621,98 +4598,7 @@ body.story-stage-4 {
     }
 }
 
-<!-- =====================================
-     16 - ZÜMRÜT HEDİYE KUTUSU
-====================================== -->
 
-<section class="screen gift-reveal-screen" id="screen16">
-
-    <div class="container gift-reveal-container">
-
-        <div class="small">
-            özel üretim tamamlandı...
-        </div>
-
-        <h2>
-            Sana ait bir şey var.
-        </h2>
-
-        <p class="gift-reveal-description">
-            Kutunun içinde ne olduğunu görmek için dokun. :)
-        </p>
-
-
-        <div
-            class="zumrut-gift-box"
-            id="zumrutGiftBox"
-        >
-
-            <!-- KUTU KAPAĞI -->
-            <div class="zumrut-gift-lid">
-
-                <div class="gift-bow">
-                    🎀
-                </div>
-
-                <div class="gift-lid-line"></div>
-
-            </div>
-
-
-            <!-- KUTUNUN İÇİ -->
-            <div class="zumrut-gift-body">
-
-                <div
-                    class="gift-character-holder"
-                    id="giftCharacterHolder"
-                >
-                </div>
-
-                <div class="gift-box-ribbon"></div>
-
-                <strong>
-                    ZÜMRÜT
-                </strong>
-
-                <small>
-                    SPECIAL BIRTHDAY EDITION • 1/1
-                </small>
-
-            </div>
-
-
-            <div class="gift-tap-text">
-                ♡ AÇMAK İÇİN DOKUN
-            </div>
-
-        </div>
-
-
-        <div
-            class="gift-reveal-result"
-            id="giftRevealResult"
-        >
-
-            <div>✦ LIMITED EDITION ✦</div>
-
-            <h2>
-                Zümrüt — 1/1
-            </h2>
-
-            <p>
-                Aynısından bir tane daha yapılması
-                teknik olarak mümkün görünmüyor. :D
-            </p>
-
-            <button onclick="next(13)">
-                DEVAM ET →
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
 
 
 /* =========================================
@@ -8280,7 +8166,7 @@ body.story-stage-4 {
             </div>
 
             <button
-    onclick="openZumrutGift()"
+    onclick="flipDollPackage()"
     id="flipDollButton"
 >
     HEDİYEMİ AÇ →
@@ -12970,15 +12856,7 @@ function createMiniZumrut() {
     }, 2700);
 }
 
-/* =========================================
-   HEDİYE EKRANINI AÇ
-========================================= */
 
-function openZumrutGift() {
-
-    next(16);
-
-}
 
 </script>
 
