@@ -560,10 +560,11 @@ background: rgba(255,255,255,0.20);
     box-shadow:
         0 8px 25px rgba(100, 30, 65, 0.20);
 
-    pointer-events: auto;
+    pointer-events: auto !important;
     cursor: pointer;
+    touch-action: manipulation;
 
-    z-index: 2;
+    z-index: 20;
 
     opacity: 0;
 
@@ -2501,7 +2502,7 @@ const flyingPhotos = [
         memory: "BURAYA 6. FOTOĞRAFIN ANISINI YAZACAĞIZ."
     },
     {
-        src: "https://drive.google.com/thumbnail?id=1i0AChhj8VB0ike7dl15wW9sJzCJM0KvM&sz=w500",
+        src: "https://drive.google.com/thumbnail?id=1i0AChhj8VB0ike7dL15wW9sJzCJMOKvM&sz=w500",
         memory: "BURAYA 7. FOTOĞRAFIN ANISINI YAZACAĞIZ."
     }
 ];
@@ -2534,9 +2535,10 @@ photo.dataset.memory = selectedPhoto.memory;
 
 photo.style.cursor = "pointer";
 
-photo.addEventListener("click", function (e) {
+photo.addEventListener("pointerdown", function (e) {
+    e.preventDefault();
     e.stopPropagation();
-    openPhotoMemory(photo.src, photo.dataset.memory);
+    openPhotoMemory(selectedPhoto.src, selectedPhoto.memory);
 });
 
     /* Ekranın rastgele bir yerinden çıksın */
@@ -3255,6 +3257,14 @@ function loadSong(index) {
 
     musicTitle.textContent =
         song.title;
+
+    const musicArtist =
+        document.getElementById("musicArtist");
+
+    if (musicArtist) {
+        musicArtist.textContent =
+            song.artist || "";
+    }
 
 
     musicProgress.value = 0;
