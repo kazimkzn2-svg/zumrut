@@ -5384,6 +5384,69 @@ body.story-stage-4 {
     }
 }
 
+/* =========================================
+   MÜZİK GİZLİ MESAJI
+========================================= */
+
+.music-secret-message {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -45%)
+        scale(.9);
+
+    width: min(390px, 86vw);
+    padding: 28px 25px;
+
+    background: rgba(255, 238, 246, .97);
+
+    border: 1px solid rgba(255,255,255,.9);
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(93,35,63,.25);
+
+    color: #71324f;
+    text-align: center;
+
+    z-index: 999999;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+}
+
+.music-secret-message.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+.music-secret-icon {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.music-secret-message strong {
+    display: block;
+    font-size: 19px;
+    line-height: 1.45;
+}
+
+.music-secret-message span {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: .7;
+}
+
 </style>
 </head>
 
@@ -8277,8 +8340,68 @@ function loadSong(index) {
 /* =========================
    PLAY / PAUSE
 ========================= */
+function showMusicSecretMessage() {
+
+    const oldMessage =
+        document.querySelector(".music-secret-message");
+
+    if (oldMessage) {
+        oldMessage.remove();
+    }
+
+    const message = document.createElement("div");
+
+    message.className = "music-secret-message";
+
+    message.innerHTML = `
+        <div class="music-secret-icon">✦</div>
+
+        <strong>
+            Burayı da kurcalayacağını biliyordum.
+        </strong>
+
+        <span>
+            Her şeyi bulmadan rahat etmeyeceksin galiba. :D
+        </span>
+    `;
+
+    document.body.appendChild(message);
+
+    requestAnimationFrame(() => {
+        message.classList.add("show");
+    });
+
+    setTimeout(() => {
+        message.classList.remove("show");
+
+        setTimeout(() => {
+            message.remove();
+        }, 500);
+    }, 3500);
+}
+
+let musicSecretClickCount = 0;
+let musicSecretTimer = null;
 
 function toggleMusic() {
+
+        /* MÜZİK ÇALAR GİZLİ ŞEY */
+    musicSecretClickCount++;
+
+    clearTimeout(musicSecretTimer);
+
+    musicSecretTimer = setTimeout(() => {
+        musicSecretClickCount = 0;
+    }, 2500);
+
+    if (musicSecretClickCount >= 3) {
+        musicSecretClickCount = 0;
+        clearTimeout(musicSecretTimer);
+
+        unlockSecret("music");
+
+        showMusicSecretMessage();
+    }
 
     if (music.paused) {
 
