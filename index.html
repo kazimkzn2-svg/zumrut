@@ -2876,24 +2876,31 @@ photo.dataset.memory = selectedPhoto.memory;
 photo.dataset.src = selectedPhoto.src;
 
 if (selectedPhoto.src === "foto3.jpeg") {
+
     photo.classList.add("stella-photo");
 
     photo.addEventListener("click", function(event) {
+
         event.stopPropagation();
 
         // Sadece ilk ekranda çalışsın
-        if (!document.getElementById("screen1").classList.contains("active")) {
+        if (
+            !document
+                .getElementById("screen1")
+                .classList.contains("active")
+        ) {
             return;
         }
 
         stellaClickCount++;
 
         if (stellaClickCount === 3) {
+
             showStellaMessage();
+
             stellaClickCount = 0;
         }
     });
-}
 }
 
 photo.addEventListener("pointerdown", function (e) {
