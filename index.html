@@ -4621,6 +4621,100 @@ body.story-stage-4 {
     }
 }
 
+<!-- =====================================
+     16 - ZÜMRÜT HEDİYE KUTUSU
+====================================== -->
+
+<section class="screen gift-reveal-screen" id="screen16">
+
+    <div class="container gift-reveal-container">
+
+        <div class="small">
+            özel üretim tamamlandı...
+        </div>
+
+        <h2>
+            Sana ait bir şey var.
+        </h2>
+
+        <p class="gift-reveal-description">
+            Kutunun içinde ne olduğunu görmek için dokun. :)
+        </p>
+
+
+        <div
+            class="zumrut-gift-box"
+            id="zumrutGiftBox"
+        >
+
+            <!-- KUTU KAPAĞI -->
+            <div class="zumrut-gift-lid">
+
+                <div class="gift-bow">
+                    🎀
+                </div>
+
+                <div class="gift-lid-line"></div>
+
+            </div>
+
+
+            <!-- KUTUNUN İÇİ -->
+            <div class="zumrut-gift-body">
+
+                <div
+                    class="gift-character-holder"
+                    id="giftCharacterHolder"
+                >
+                </div>
+
+                <div class="gift-box-ribbon"></div>
+
+                <strong>
+                    ZÜMRÜT
+                </strong>
+
+                <small>
+                    SPECIAL BIRTHDAY EDITION • 1/1
+                </small>
+
+            </div>
+
+
+            <div class="gift-tap-text">
+                ♡ AÇMAK İÇİN DOKUN
+            </div>
+
+        </div>
+
+
+        <div
+            class="gift-reveal-result"
+            id="giftRevealResult"
+        >
+
+            <div>✦ LIMITED EDITION ✦</div>
+
+            <h2>
+                Zümrüt — 1/1
+            </h2>
+
+            <p>
+                Aynısından bir tane daha yapılması
+                teknik olarak mümkün görünmüyor. :D
+            </p>
+
+            <button onclick="next(13)">
+                DEVAM ET →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 /* =========================================
    SCREEN 13 - ZÜMRÜT'ÜN AYNASI
 ========================================= */
@@ -6654,6 +6748,312 @@ body.story-stage-4 {
     }
 }
 
+/* =========================================
+   SCREEN 16 - ZÜMRÜT HEDİYE KUTUSU
+========================================= */
+
+#screen16 .gift-reveal-container {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+}
+
+.gift-reveal-description {
+    margin-top: 10px !important;
+}
+
+
+/* KUTUNUN TAMAMI */
+
+.zumrut-gift-box {
+    position: relative;
+
+    width: 290px;
+    height: 300px;
+
+    margin: 45px auto 0;
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+
+    perspective: 900px;
+
+    filter:
+        drop-shadow(
+            0 25px 30px
+            rgba(111, 42, 73, .20)
+        );
+}
+
+
+/* KUTU GÖVDESİ */
+
+.zumrut-gift-body {
+    position: absolute;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform: translateX(-50%);
+
+    width: 245px;
+    height: 190px;
+
+    border-radius:
+        12px 12px 25px 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f47eaf,
+            #df5d91
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,.75);
+
+    box-shadow:
+        inset 0 0 0 6px
+        rgba(255,255,255,.12);
+
+    overflow: hidden;
+}
+
+
+/* DİKEY KURDELE */
+
+.gift-box-ribbon {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    width: 42px;
+    height: 100%;
+
+    background:
+        rgba(255,220,232,.72);
+}
+
+
+/* ZÜMRÜT YAZISI */
+
+.zumrut-gift-body strong {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 48px;
+
+    color: white;
+
+    font-size: 25px;
+    letter-spacing: 5px;
+
+    z-index: 3;
+}
+
+.zumrut-gift-body small {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 27px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size: 7px;
+    letter-spacing: 2px;
+
+    z-index: 3;
+}
+
+
+/* =========================================
+   KAPAK
+========================================= */
+
+.zumrut-gift-lid {
+    position: absolute;
+
+    left: 50%;
+    top: 55px;
+
+    transform:
+        translateX(-50%)
+        rotate(0deg);
+
+    width: 275px;
+    height: 70px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff9bc2,
+            #ed6da1
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,.85);
+
+    box-shadow:
+        0 8px 15px
+        rgba(101,36,67,.14);
+
+    z-index: 20;
+
+    transform-origin:
+        50% 100%;
+
+    transition:
+        transform .8s
+        cubic-bezier(.16,.84,.32,1),
+        opacity .5s ease;
+}
+
+
+/* KAPAKTAKİ KURDELE */
+
+.gift-lid-line {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    width: 45px;
+    height: 100%;
+
+    background:
+        rgba(255,225,235,.75);
+}
+
+
+/* FİYONK */
+
+.gift-bow {
+    position: absolute;
+
+    left: 50%;
+    top: -42px;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 61px;
+
+    z-index: 25;
+
+    filter:
+        drop-shadow(
+            0 6px 5px
+            rgba(89,27,56,.15)
+        );
+
+    animation:
+        giftBowFloat
+        2.2s ease-in-out infinite;
+}
+
+@keyframes giftBowFloat {
+
+    0%, 100% {
+        transform:
+            translateX(-50%)
+            rotate(-3deg)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(3deg)
+            translateY(-4px);
+    }
+}
+
+
+/* =========================================
+   AÇMA YAZISI
+========================================= */
+
+.gift-tap-text {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    color: #934363;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    animation:
+        giftTapPulse
+        1.7s ease-in-out infinite;
+}
+
+@keyframes giftTapPulse {
+
+    0%, 100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* BEBEĞİN SONRA ÇIKACAĞI YER */
+
+.gift-character-holder {
+    position: absolute;
+
+    left: 50%;
+    bottom: 15px;
+
+    transform:
+        translateX(-50%);
+
+    width: 190px;
+    height: 245px;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+/* SONUÇ BAŞLANGIÇTA GİZLİ */
+
+.gift-reveal-result {
+    display: none;
+
+    margin-top: 5px;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
 </style>
 </head>
 
@@ -7880,11 +8280,11 @@ body.story-stage-4 {
             </div>
 
             <button
-                onclick="flipDollPackage()"
-                id="flipDollButton"
-            >
-                HEDİYEMİ AÇ →
-            </button>
+    onclick="openZumrutGift()"
+    id="flipDollButton"
+>
+    HEDİYEMİ AÇ →
+</button>
 
         </div>
 
@@ -8337,7 +8737,7 @@ body.story-stage-4 {
                 </div>
 
                 <button onclick="saveFutureNote()">
-                    ♡ BU ANI BIRAK
+                    ♡ BİR ANI BIRAK
                 </button>
 
                 <div
@@ -12568,6 +12968,16 @@ function createMiniZumrut() {
             "üretim tamamlandı ♡";
 
     }, 2700);
+}
+
+/* =========================================
+   HEDİYE EKRANINI AÇ
+========================================= */
+
+function openZumrutGift() {
+
+    next(16);
+
 }
 
 </script>
