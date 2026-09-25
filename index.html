@@ -5350,14 +5350,10 @@ body.story-stage-4 {
 
     0% {
         opacity: 0;
-
         transform:
-            translate3d(
-                var(--decor-start-x),
-                60px,
-                0
-            )
-            rotate(var(--decor-rotate-start))
+            translateX(0)
+            translateY(0)
+            rotate(-15deg)
             scale(.7);
     }
 
@@ -5366,16 +5362,11 @@ body.story-stage-4 {
     }
 
     45% {
+        opacity: var(--decor-opacity);
         transform:
-            translate3d(
-                calc(
-                    var(--decor-start-x) +
-                    var(--decor-sway)
-                ),
-                -48vh,
-                0
-            )
-            rotate(0deg)
+            translateX(var(--decor-sway))
+            translateY(-50vh)
+            rotate(10deg)
             scale(1);
     }
 
@@ -5385,16 +5376,9 @@ body.story-stage-4 {
 
     100% {
         opacity: 0;
-
         transform:
-            translate3d(
-                calc(
-                    var(--decor-start-x) +
-                    var(--decor-sway-two)
-                ),
-                -115vh,
-                0
-            )
+            translateX(var(--decor-sway-two))
+            translateY(-120vh)
             rotate(var(--decor-rotate-end))
             scale(.8);
     }
@@ -10465,10 +10449,7 @@ function createFlyingDecoration() {
         Math.random() * 95;
 
 
-    decoration.style.setProperty(
-        "--decor-start-x",
-        startX + "vw"
-    );
+    decoration.style.left = startX + "vw";
 
 
     /* Sağa sola süzülme */
