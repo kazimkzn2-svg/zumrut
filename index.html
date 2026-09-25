@@ -1559,6 +1559,162 @@ background: rgba(255,255,255,0.20);
     }
 }
 
+/* ==============================
+   FOTOĞRAF ANI PENCERESİ
+============================== */
+
+.photo-memory-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(20, 8, 15, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.photo-memory-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.photo-memory-card {
+    position: relative;
+
+    width: min(420px, 90vw);
+    max-height: 88vh;
+
+    padding: 16px 16px 24px;
+
+    background: #fff0f5;
+
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.35);
+
+    transform:
+        translateY(25px)
+        scale(0.85)
+        rotate(-2deg);
+
+    opacity: 0;
+
+    transition:
+        transform 0.45s cubic-bezier(.2,.8,.2,1),
+        opacity 0.35s ease;
+}
+
+.photo-memory-modal.show .photo-memory-card {
+    transform:
+        translateY(0)
+        scale(1)
+        rotate(0deg);
+
+    opacity: 1;
+}
+
+.photo-memory-image {
+    display: block;
+
+    width: 100%;
+    max-height: 55vh;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+}
+
+.photo-memory-line {
+    width: 45px;
+    height: 2px;
+
+    margin: 18px auto 14px;
+
+    background: #b95b82;
+    opacity: 0.5;
+}
+
+.photo-memory-text {
+    margin: 0;
+
+    padding: 0 12px;
+
+    color: #652943;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+.photo-memory-close {
+    position: absolute;
+
+    top: -13px;
+    right: -13px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 50%;
+
+    background: #762f50;
+    color: white;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+/* TELEFON */
+@media (max-width: 600px) {
+
+    .photo-memory-modal {
+        padding: 18px;
+    }
+
+    .photo-memory-card {
+        width: 92vw;
+        padding: 12px 12px 20px;
+        border-radius: 20px;
+    }
+
+    .photo-memory-image {
+        max-height: 58vh;
+    }
+
+    .photo-memory-text {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+}
+
+
 </style>
 </head>
 
@@ -2319,22 +2475,35 @@ function startTypewriter() {
 /* ARKA PLANDA DÖNEN FOTOĞRAFLAR */
 
 const flyingPhotos = [
-    "https://drive.google.com/thumbnail?id=1rcXvR-cZmXU2Jfs_5TnZ48jQTI8H26ba&sz=w500",
-
-"https://drive.google.com/thumbnail?id=13CAgxfzH8-hKdZvpURZn2ExySHJqQQX1&sz=w500",
-
-    "https://drive.google.com/thumbnail?id=12HuS2DYNF7fqxq4Nqfg5lDzMnSUKXVsD&sz=w500",
-
-    "https://drive.google.com/thumbnail?id=1_FEF6wKm0sikntK2XzMt-lPQFMxGczdS&sz=w500",
-
-    "https://drive.google.com/thumbnail?id=1ZEmtg47xAWwuU7UZXWWIR19JzeAmH1gw&sz=w500",
-
-    "https://drive.google.com/thumbnail?id=1jUKuIS5Z9S-5cFpWVulTt09rjMfrUqin&sz=w500",
-
-    "https://drive.google.com/thumbnail?id=1i0AChhj8VB0ike7dL15wW9sJzCJMOKvM&sz=w500"
-
+    {
+        src: "https://drive.google.com/thumbnail?id=1rcXvR-cZmXU2Jfs_5TnZ48jQTI8H26ba&sz=w500",
+        memory: "BURAYA 1. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    },
+    {
+        src: "https://drive.google.com/thumbnail?id=13CAgxfzH8-hKdZvpURZn2ExySHJqQQX1&sz=w500",
+        memory: "BURAYA 2. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    },
+    {
+        src: "https://drive.google.com/thumbnail?id=12HuS2DYNF7fqxq4Ngfg5lDzMnSUKXVsD&sz=w500",
+        memory: "BURAYA 3. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    },
+    {
+        src: "https://drive.google.com/thumbnail?id=1_FEF6wKm0sikntK2XzMt-1PQFMxGczdS&sz=w500",
+        memory: "BURAYA 4. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    },
+    {
+        src: "https://drive.google.com/thumbnail?id=1ZEmtg47xAWwuU7UZXWWIR19JzeAmH1gw&sz=w500",
+        memory: "BURAYA 5. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    },
+    {
+        src: "https://drive.google.com/thumbnail?id=1jUKuIS5Z9S-5cFpWu1Tt09rjMfrUqin&sz=w500",
+        memory: "BURAYA 6. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    },
+    {
+        src: "https://drive.google.com/thumbnail?id=1i0AChhj8VB0ike7dl15wW9sJzCJM0KvM&sz=w500",
+        memory: "BURAYA 7. FOTOĞRAFIN ANISINI YAZACAĞIZ."
+    }
 ];
-
 
 function createFlyingPhoto() {
 
@@ -2354,11 +2523,20 @@ function createFlyingPhoto() {
 
     /* 5 fotoğraftan rastgele birini seç */
 
-    photo.src =
-        flyingPhotos[
-            Math.floor(Math.random() * flyingPhotos.length)
-        ];
+    const selectedPhoto =
+    flyingPhotos[
+        Math.floor(Math.random() * flyingPhotos.length)
+    ];
 
+photo.src = selectedPhoto.src;
+photo.dataset.memory = selectedPhoto.memory;
+
+photo.style.cursor = "pointer";
+
+photo.addEventListener("click", function (e) {
+    e.stopPropagation();
+    openPhotoMemory(photo.src, photo.dataset.memory);
+});
 
     /* Ekranın rastgele bir yerinden çıksın */
 
@@ -2428,6 +2606,74 @@ function createFlyingPhoto() {
         photo.remove();
 
     }, duration * 1000);
+}
+
+function openPhotoMemory(imageSrc, memoryText) {
+
+    // Daha önce açıksa tekrar oluşturma
+    const oldModal = document.getElementById("photoMemoryModal");
+    if (oldModal) {
+        oldModal.remove();
+    }
+
+    const modal = document.createElement("div");
+    modal.id = "photoMemoryModal";
+    modal.className = "photo-memory-modal";
+
+    modal.innerHTML = `
+        <div class="photo-memory-card">
+
+            <button
+                class="photo-memory-close"
+                onclick="closePhotoMemory()"
+                aria-label="Kapat"
+            >
+                ×
+            </button>
+
+            <img
+                src="${imageSrc}"
+                class="photo-memory-image"
+                alt="Bir anı"
+            >
+
+            <div class="photo-memory-line"></div>
+
+            <p class="photo-memory-text">
+                ${memoryText}
+            </p>
+
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Animasyonun çalışması için
+    requestAnimationFrame(() => {
+        modal.classList.add("show");
+    });
+
+    // Karanlık alana tıklayınca da kapansın
+    modal.addEventListener("click", function(e) {
+        if (e.target === modal) {
+            closePhotoMemory();
+        }
+    });
+}
+
+
+function closePhotoMemory() {
+
+    const modal =
+        document.getElementById("photoMemoryModal");
+
+    if (!modal) return;
+
+    modal.classList.remove("show");
+
+    setTimeout(() => {
+        modal.remove();
+    }, 350);
 }
 
 function createFlyingDaisy() {
