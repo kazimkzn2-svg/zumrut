@@ -3721,6 +3721,91 @@ body.story-stage-4 {
             rgba(255,255,255,.65),
             rgba(255,199,222,.35)
         );
+        /* BEBEK ÖN İZLEME YERLEŞİM DÜZELTMESİ */
+
+.doll-preview {
+    position: relative;
+    min-height: 300px;
+    padding: 20px 175px 20px 20px;
+}
+
+/* Ortadaki Zümrüt oluşturma alanı */
+
+.doll-creation-screen {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    bottom: 20px;
+    right: 175px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.doll-creation-heart {
+    font-size: 48px;
+    color: #bd5a85;
+    margin-bottom: 14px;
+}
+
+.doll-creation-screen strong {
+    display: block;
+    color: #ad4e78;
+    font-size: 17px;
+    letter-spacing: 3px;
+}
+
+.doll-creation-screen small {
+    display: block;
+    margin-top: 7px;
+    color: rgba(118,47,80,.55);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+/* Sağdaki 4 küçük kutu */
+
+.doll-accessory-slots {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 125px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+
+    z-index: 10;
+}
+
+.doll-slot {
+    width: 58px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+
+    text-align: center;
+}
+
+.doll-slot span {
+    font-size: 25px;
+}
+
+.doll-slot small {
+    font-size: 8px;
+    letter-spacing: 1px;
+}
 }
 
 .doll-preview-placeholder {
