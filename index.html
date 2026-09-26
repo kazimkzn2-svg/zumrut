@@ -667,6 +667,31 @@ background: rgba(255,255,255,0.20);
 
     animation: cursorBlink .7s infinite;
 }
+.skip-typewriter-btn {
+    display: block;
+    margin: 20px 0 0 auto;
+    padding: 9px 15px;
+
+    border: 1px solid rgba(118, 47, 80, 0.25);
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.22);
+    color: #762f50;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    opacity: 0.7;
+
+    transition: 0.25s ease;
+}
+
+.skip-typewriter-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.4);
+}
 
 @keyframes cursorBlink {
 
@@ -1902,18 +1927,18 @@ background: rgba(255,255,255,0.20);
 
     z-index: 999999;
 
-    font-size: 13px;
+    font-size: 18px;
 
     color: rgba(255, 255, 255, 0.9);
 
-    text-shadow:
-        0 0 6px rgba(255,255,255,0.9),
-        0 0 12px rgba(235,120,175,0.45);
-
+   text-shadow:
+    0 0 8px rgba(255,255,255,1),
+    0 0 16px rgba(255,120,175,0.8),
+    0 0 24px rgba(255,120,175,0.45);
     transform: translate(-50%, -50%);
 
     animation:
-        sparkleDisappear 0.9s ease-out forwards;
+        sparkleDisappear 1.2s ease-out forwards;
 }
 
 @keyframes sparkleDisappear {
@@ -6949,6 +6974,106 @@ body.story-stage-4 {
     color: #111 !important;
 }
 
+
+#kazimQuizScreen .quiz-box {
+    width: min(560px, 92vw);
+    padding: 32px 25px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 28px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 20px 60px rgba(80, 20, 50, 0.18);
+}
+
+#kazimQuizScreen h2 {
+    margin-bottom: 12px;
+    font-size: clamp(28px, 5vw, 42px);
+}
+
+#kazimQuizScreen p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.quiz-subtitle {
+    font-weight: 700;
+    margin-bottom: 25px !important;
+}
+
+.quiz-question {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.quiz-answers {
+    display: grid;
+    gap: 12px;
+}
+
+.quiz-answer {
+    width: 100%;
+    padding: 14px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: inherit;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.quiz-answer:hover {
+    transform: translateY(-2px) scale(1.01);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.quiz-progress {
+    font-size: 13px;
+    opacity: 0.65;
+    margin-bottom: 15px;
+}
+
+#quizResult h2 {
+    margin-bottom: 15px;
+}
+
+#quizResult img {
+    display: block;
+    width: min(320px, 85%);
+    margin: 20px auto;
+    border-radius: 20px;
+}
+
+.quiz-final-score {
+    margin: 22px 0;
+    padding: 14px 18px;
+
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+
+    font-size: 16px;
+}
+
+.quiz-final-score strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+.quiz-retry-btn {
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
 </style>
 </head>
 
@@ -7353,7 +7478,28 @@ body.story-stage-4 {
 
 </div>
 
-        <button onclick="next(6)">BİR ŞEY DAHA VAR →</button>
+       <button onclick="showKazimQuiz()">BİR ŞEY DAHA VAR →</button>
+
+    </div>
+</section>
+
+<!-- KAZIM QUIZ -->
+<section class="screen" id="kazimQuizScreen">
+    <div class="quiz-box">
+
+        <div id="quizIntro">
+            <h2>Hep sen, hep sen...</h2>
+            <p>Biraz da benden konuşalım.</p>
+            <p class="quiz-subtitle">Bakalım beni ne kadar tanıyorsun?</p>
+
+            <button class="main-btn" onclick="startKazimQuiz()">
+                Teste Başla
+            </button>
+        </div>
+
+        <div id="quizQuestions" style="display: none;"></div>
+
+        <div id="quizResult" style="display: none;"></div>
 
     </div>
 </section>
@@ -7862,16 +8008,27 @@ body.story-stage-4 {
     <div class="container">
         <div class="small">bir dakika daha...</div>
         <h2>Bunu da söylemeden geçmek istemedim.</h2>
+<div class="motivation-box">
 
-        <div class="motivation-box">
-            <p id="motivationText"></p>
-            <span class="motivation-cursor" id="motivationCursor">|</span>
-        </div>
+    <p id="motivationText"></p>
 
-        <button id="motivationContinue" onclick="next(15)">
-            Duygusallık yeter, hadi gidelim buradan →
-        </button>
-    </div>
+    <span class="motivation-cursor" id="motivationCursor">|</span>
+
+    <button
+        id="skipMotivationBtn"
+        class="skip-typewriter-btn"
+        onclick="skipMotivation()"
+    >
+        Tamamını okumak istiyorum →
+    </button>
+
+</div>
+<button
+    id="motivationContinue"
+    onclick="next(15)"
+>
+    Duygusallık yeter, hadi gidelim buradan →
+</button>
 </section>
 
 <!-- 15 - BİR ŞEY DAHA -->
@@ -7958,14 +8115,21 @@ body.story-stage-4 {
 
 
         <!-- DAKTİLO MESAJI -->
+<div class="typewriter-box">
 
-        <div class="typewriter-box">
+    <p id="typewriterText"></p>
 
-            <p id="typewriterText"></p>
+    <span class="typewriter-cursor">|</span>
 
-            <span class="typewriter-cursor">|</span>
+    <button
+        id="skipTypewriterBtn"
+        class="skip-typewriter-btn"
+        onclick="skipTypewriter()"
+    >
+        Sabredemiyorum →
+    </button>
 
-        </div>
+</div>
 
 <!-- ZÜMRÜT'ÜN KURCALAMA RAPORU -->
 
@@ -8265,6 +8429,7 @@ if (bloomHint) {
 
 
 let motivationStarted = false;
+let motivationTimeout = null;
 
 const motivationMessage = `Bazen işler planladığımız zamanda yoluna girmiyor.
 
@@ -8298,39 +8463,99 @@ Bugün senin doğum günün. :)`;
 
 function startMotivationPage() {
     if (motivationStarted) return;
+
     motivationStarted = true;
 
     const element = document.getElementById("motivationText");
     const cursor = document.getElementById("motivationCursor");
     const button = document.getElementById("motivationContinue");
+    const skipButton = document.getElementById("skipMotivationBtn");
 
     let index = 0;
 
-    setTimeout(() => {
+    // Ekrana her girişte temiz başlasın
+    element.textContent = "";
+
+    motivationTimeout = setTimeout(() => {
+
         function typeMotivation() {
+
             if (index < motivationMessage.length) {
+
                 element.textContent += motivationMessage.charAt(index);
                 index++;
 
-                const screen = document.getElementById("screen9");
+                // ÖNEMLİ:
+                // Her yeni daktilo adımının ID'sini saklıyoruz.
+                motivationTimeout = setTimeout(typeMotivation, 42);
 
-                setTimeout(typeMotivation, 42);
             } else {
+
+                // Yazı normal şekilde bittiyse
                 cursor.style.display = "none";
 
-                setTimeout(() => {
+                if (skipButton) {
+                    skipButton.style.display = "none";
+                }
+
+                motivationTimeout = setTimeout(() => {
                     button.classList.add("show");
-                    const screen = document.getElementById("screen9");
-                
                 }, 2000);
             }
         }
 
         typeMotivation();
+
     }, 1000);
 }
 
+function skipMotivation() {
 
+    // Devam eden daktiloyu durdur
+    if (motivationTimeout) {
+        clearTimeout(motivationTimeout);
+    }
+
+    const element = document.getElementById("motivationText");
+    const cursor = document.getElementById("motivationCursor");
+    const skipButton = document.getElementById("skipMotivationBtn");
+    const continueButton = document.getElementById("motivationContinue");
+    console.log("DEVAM BUTONU:", continueButton);
+
+    // Yazının tamamını anında göster
+    element.textContent = motivationMessage;
+
+    // Daktilo imlecini kaldır
+    if (cursor) {
+        cursor.style.display = "none";
+    }
+
+    // Sabredemiyorum butonunu kaldır
+    if (skipButton) {
+        skipButton.style.display = "none";
+    }
+
+   if (continueButton) {
+
+    continueButton.classList.add("show");
+
+    continueButton.style.opacity = "1";
+    continueButton.style.visibility = "visible";
+    continueButton.style.transform = "translateY(0)";
+    continueButton.style.display = "inline-block";
+
+ setTimeout(() => {
+
+    const screen = document.getElementById("screen9");
+
+    screen.scrollTo({
+        top: screen.scrollHeight,
+        behavior: "smooth"
+    });
+
+}, 150);
+   }
+}
 function wrongAnswer(button) {
 
     // Daha önce yok olmuş butona tekrar basılmasını engelle
@@ -8469,6 +8694,10 @@ function showMessage() {
 }
 
 
+let typewriterTimeout = null;
+let typewriterSkipped = false;
+
+
 function startTypewriter() {
 
     const element =
@@ -8485,10 +8714,10 @@ function startTypewriter() {
 
     index++;
 
-    setTimeout(
-        typeLetter,
-        32
-    );
+    typewriterTimeout = setTimeout(
+    typeLetter,
+    32
+);
 
 } else {
 
@@ -8500,38 +8729,81 @@ function startTypewriter() {
         cursor.style.display = "none";
     }
 
+  const skipButton = document.getElementById("skipTypewriterBtn");
 
-    /* Anı köşesini göster */
+if (skipButton) {
+    skipButton.style.display = "none";
+}
 
+finishFinalMessage();
+
+} 
+
+}
+
+typeLetter();
+
+} 
+
+
+function finishFinalMessage() {
+
+    // Kurcalama raporunu göster
+    setTimeout(() => {
+        showVisitReport();
+    }, 300);
+
+    // Not bırakma + eski anılar bölümünü göster
     const memoryCorner =
         document.getElementById("memoryCorner");
 
-    memoryCorner.style.display = "block";
+    if (memoryCorner) {
 
-    setTimeout(() => {
+        memoryCorner.style.display = "block";
 
-        memoryCorner.classList.add("show");
-
-    }, 100);
-    /* Daktilo bittikten sonra kurcalama raporunu göster */
-
-setTimeout(() => {
-
-    showVisitReport();
-
-}, 700);
+        setTimeout(() => {
+            memoryCorner.classList.add("show");
+        }, 100);
+    }
 }
+
+function skipTypewriter() {
+
+    typewriterSkipped = true;
+
+    if (typewriterTimeout) {
+        clearTimeout(typewriterTimeout);
     }
 
-    typeLetter();
+    const element = document.getElementById("typewriterText");
+    const cursor = document.querySelector(".typewriter-cursor");
+    const button = document.getElementById("skipTypewriterBtn");
+
+    // Yazının tamamını anında göster
+    element.textContent = birthdayMessage;
+
+    // İmleci kaldır
+    if (cursor) {
+        cursor.style.display = "none";
+    }
+
+    // Sabredemiyorum butonunu kaldır
+   if (button) {
+    button.style.display = "none";
 }
+
+finishFinalMessage();
+
+}
+
+
 
 /* ARKA PLANDA DÖNEN FOTOĞRAFLAR */
 
 const flyingPhotos = [
     {
         src: "bloom.jpg",
-        memory: "Bir gün Winx muhabbeti açılmıştı, “Ben Bloom’um” demiştin. O zaman pek sorgulamamıştım ama düşününce haklıymışsın; aynı enerji, aynı tripler, aynı başrol özgüveni. Bir tek kanatların eksik. :D"
+        memory: " “Ben Bloom’um” demiştin. O zaman pek sorgulamamıştım ama düşününce haklıymışsın; aynı enerji, aynı tripler, aynı başrol özgüveni. Bir tek kanatların eksik. Gerçek bloom sensin. :D"
     },
     {
         src: "foto2.png",
@@ -9965,7 +10237,7 @@ document.addEventListener(
 
         const now = Date.now();
 
-        if (now - lastSparkleTime < 55) {
+        if (now - lastSparkleTime < 30) {
             return;
         }
 
@@ -12268,6 +12540,219 @@ function createMiniZumrut() {
 }
 
 
+const kazimQuiz = [
+    {
+        question: "Benim en sevdiği oyun hangisi?",
+        answers: [
+            "FiveM",
+            "Rust",
+            "Counter-Strike 2",
+            "Minecraft"
+        ],
+        correct: "Rust"
+    },
+    {
+        question: "Benim en sevdiği yemek hangisi?",
+        answers: [
+            "Mantı",
+            "Bağ yaprağı sarması",
+            "İskender",
+            "Kuru fasulye"
+        ],
+        correct: "Bağ yaprağı sarması"
+    },
+    {
+        question: "Benim en çok kullandığı kelime/cümle hangisi?",
+        answers: [
+            "Olabilir",
+            "Hadi ya",
+            "Ne alaka",
+            "Bilmiyorum"
+        ],
+        correct: "Ne alaka"
+    }
+];
+
+let kazimQuizQuestion = 0;
+let kazimQuizScore = 0;
+
+
+// QUIZ EKRANINI AÇ
+function showKazimQuiz() {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document
+        .getElementById("kazimQuizScreen")
+        .classList.add("active");
+}
+
+
+// QUIZİ BAŞLAT
+function startKazimQuiz() {
+
+    kazimQuizQuestion = 0;
+    kazimQuizScore = 0;
+
+    document.getElementById("quizIntro").style.display = "none";
+    document.getElementById("quizResult").style.display = "none";
+    document.getElementById("quizQuestions").style.display = "block";
+
+    showKazimQuestion();
+}
+
+
+// SORUYU GÖSTER
+function showKazimQuestion() {
+
+    const questionBox = document.getElementById("quizQuestions");
+    const current = kazimQuiz[kazimQuizQuestion];
+
+    questionBox.innerHTML = `
+        <div class="quiz-progress">
+            Soru ${kazimQuizQuestion + 1} / ${kazimQuiz.length}
+        </div>
+
+        <div class="quiz-question">
+            ${current.question}
+        </div>
+
+        <div class="quiz-answers">
+            ${current.answers.map(answer => `
+                <button
+                    class="quiz-answer"
+                    onclick="answerKazimQuiz('${answer.replace(/'/g, "\\'")}')"
+                >
+                    ${answer}
+                </button>
+            `).join("")}
+        </div>
+    `;
+}
+
+
+// CEVABI KONTROL ET
+function answerKazimQuiz(answer) {
+
+    const current = kazimQuiz[kazimQuizQuestion];
+
+    if (answer === current.correct) {
+        kazimQuizScore++;
+    }
+
+    kazimQuizQuestion++;
+
+    if (kazimQuizQuestion < kazimQuiz.length) {
+        showKazimQuestion();
+    } else {
+        showKazimQuizResult();
+    }
+}
+
+
+// SONUCU GÖSTER
+function showKazimQuizResult() {
+
+    document.getElementById("quizQuestions").style.display = "none";
+
+    const result = document.getElementById("quizResult");
+    result.style.display = "block";
+
+    let message = "";
+
+    if (kazimQuizScore === 3) {
+
+        message = `
+            <h2>3/3 LAN :D</h2>
+
+            <p>
+                İLK ADIMDAYSAN EĞER; 
+                ŞAŞIRTMADIN TEŞEKKÜRLER.<br>
+                Ama ya değilsen...
+            </p>
+
+            <p><strong>Ödülünü Kedullah takdim ediyor.</strong></p>
+<img
+    src="https://static2.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/e0/57/Y5YhKyk9lFzcVpUU.gif"
+    alt="Kedullah"
+    class="kedullah-gif"
+>
+        `;
+
+    } else if (kazimQuizScore === 2) {
+
+        message = `
+            <h2>2/3</h2>
+
+            <p>
+                Fena değil Zümrüt.<br>
+                Arkadaşlığımız şimdilik devam edebilir. :D
+            </p>
+        `;
+
+    } else if (kazimQuizScore === 1) {
+
+        message = `
+            <h2>1/3...</h2>
+
+            <p>
+                Yıllardır boşuna konuşuyormuşum ben...
+            </p>
+        `;
+
+    } else {
+
+        message = `
+            <h2>0/3 💀</h2>
+
+            <p>
+                Merhaba, ben Kazım.<br>
+                Tanıştığımıza memnun oldum Zümrüt.
+            </p>
+        `;
+    }
+
+result.innerHTML = `
+    ${message}
+
+    <div class="quiz-final-score">
+        Kazım'ı tanıma skorun:
+        <strong>${kazimQuizScore}/3</strong>
+    </div>
+
+    <button class="quiz-retry-btn" onclick="restartKazimQuiz()">
+        ↻ TEKRAR DENE
+    </button>
+
+    <button onclick="finishKazimQuiz()">
+        TAMAM TAMAM, DEVAM EDELİM →
+    </button>
+`;
+}
+
+
+// QUIZI YENİDEN BAŞLAT
+function restartKazimQuiz() {
+
+    kazimQuizQuestion = 0;
+    kazimQuizScore = 0;
+
+    document.getElementById("quizResult").style.display = "none";
+    document.getElementById("quizQuestions").style.display = "block";
+
+    showKazimQuestion();
+}
+
+
+function finishKazimQuiz() {
+
+    // Zümrüt hangi sonuçtan sonra devam ettiyse onu kesin skor olarak kaydet
+    localStorage.setItem("kazimQuizFinalScore", kazimQuizScore);
+
+    next(6);
+}
 
 </script>
 
